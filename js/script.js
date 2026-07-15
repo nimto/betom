@@ -296,9 +296,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const dict = translations[currentLang] || translations['en'];
         const dictEn = translations['en'];
         
-        const title = (keyPrefix && dict[`${keyPrefix}_title`]) ? dict[`${keyPrefix}_title`] : fallbackTitle;
+        // Dynamic Fallback to English if current selected language lacks translation keys
+        const title = (keyPrefix && dict[`${keyPrefix}_title`]) ? dict[`${keyPrefix}_title`] : 
+                      ((keyPrefix && dictEn[`${keyPrefix}_title`]) ? dictEn[`${keyPrefix}_title`] : fallbackTitle);
         const titleEn = (keyPrefix && dictEn[`${keyPrefix}_title`]) ? dictEn[`${keyPrefix}_title`] : fallbackTitle;
-        const desc = (keyPrefix && dict[`${keyPrefix}_desc`]) ? dict[`${keyPrefix}_desc`] : '';
+        const desc = (keyPrefix && dict[`${keyPrefix}_desc`]) ? dict[`${keyPrefix}_desc`] : 
+                     ((keyPrefix && dictEn[`${keyPrefix}_desc`]) ? dictEn[`${keyPrefix}_desc`] : '');
         const descEn = (keyPrefix && dictEn[`${keyPrefix}_desc`]) ? dictEn[`${keyPrefix}_desc`] : '';
 
         currentSelectedServer = {
