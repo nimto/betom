@@ -1628,6 +1628,7 @@ footer {
     transition: var(--transition-smooth);
     user-select: none;
     gap: 1rem;
+    min-height: 4.5rem; /* Ensure standard balanced height for multi-line support */
 }
 
 [data-theme="light"] .option-switch {
@@ -1653,33 +1654,36 @@ footer {
     border-radius: 30px;
     transition: var(--transition-smooth);
     flex-shrink: 0;
-    order: 2;
 }
 
 [data-theme="light"] .switch-slider {
     background: rgba(0, 0, 0, 0.08);
 }
 
+/* Knob ball handle - Absolute center alignment inside track */
 .switch-slider::before {
     content: "";
     position: absolute;
     width: 1.1rem;
     height: 1.1rem;
     left: 2px;
-    bottom: 2px;
+    top: 50%;
+    transform: translateY(-50%);
     background: #718096;
     border-radius: 50%;
     transition: var(--transition-smooth);
 }
 
+/* Checked track activation */
 .option-switch input[type="checkbox"]:checked + .switch-slider {
     background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
     border-color: transparent;
     box-shadow: 0 0 10px rgba(var(--accent-cyan-rgb), 0.4);
 }
 
+/* Inchecked knob shift (Keep Y translation constant to prevent jitter) */
 .option-switch input[type="checkbox"]:checked + .switch-slider::before {
-    transform: translateX(1.3rem);
+    transform: translate(1.3rem, -50%);
     background: var(--text-inverse);
 }
 
@@ -1687,7 +1691,8 @@ footer {
     font-size: 0.88rem;
     font-weight: 600;
     color: var(--text-main);
-    order: 1;
+    line-height: 1.35;
+    text-align: left;
     transition: var(--transition-smooth);
 }
 
