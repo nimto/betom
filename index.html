@@ -283,7 +283,10 @@
             <!-- Tabs Wrapper with All Option -->
             <div class="tabs-container" id="server-tabs-container">
                 <div class="tabs-wrapper">
-                    <button class="tab-btn active" data-tab="all" id="tab-btn-all" data-i18n="servers_tab_all">All Infrastructure</button>
+                    <button class="tab-btn active" data-tab="all" id="tab-btn-all">
+                        <span class="desktop-text" data-i18n="servers_tab_all">All Infrastructure</span>
+                        <span class="mobile-text" data-i18n="servers_tab_all_short">All</span>
+                    </button>
                     <button class="tab-btn" data-tab="vm" id="tab-btn-vm" data-i18n="servers_tab_vm">Virtual Machines (VM)</button>
                     <button class="tab-btn" data-tab="bare" id="tab-btn-bare" data-i18n="servers_tab_bare">Bare Metal (Physical)</button>
                 </div>

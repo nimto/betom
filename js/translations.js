@@ -30,6 +30,7 @@ const translations = {
         servers_title: "High-Performance Data Center Servers",
         servers_desc: "From enterprise-grade Virtual Machines (VM) to heavy-duty HP Bare Metal servers, we ensure top-tier hardware environments.",
         servers_tab_all: "All Infrastructure",
+        servers_tab_all_short: "All",
         servers_tab_vm: "Virtual Machines (VM)",
         servers_tab_bare: "Bare Metal (Physical)",
         
@@ -224,6 +225,7 @@ const translations = {
         servers_title: "고성능 데이터 센터 서버 라인업",
         servers_desc: "엔터프라이즈 가상 머신(VM)부터 고사양 HP Bare Metal 물리 서버까지 최고의 하드웨어 환경을 보장합니다.",
         servers_tab_all: "전체 라인업",
+        servers_tab_all_short: "전체",
         servers_tab_vm: "가상 머신 (VM)",
         servers_tab_bare: "베어 메탈 (물리 서버)",
         
@@ -418,6 +420,7 @@ const translations = {
         servers_title: "高性能データセンター サーバー仕様",
         servers_desc: "エンタープライズ向けの仮想マシン（VM）から、高性能のHPベアメタル（物理）サーバーまで、多様なハードウェア環境を揃えています。",
         servers_tab_all: "すべてのラインナップ",
+        servers_tab_all_short: "すべて",
         servers_tab_vm: "仮想マシン (VM)",
         servers_tab_bare: "ベ어メタル (物理サーバー)",
         
@@ -612,6 +615,7 @@ const translations = {
         servers_title: "高效能數據中心伺服器產品線",
         servers_desc: "從企業級虛擬機器（VM）到高效能 HP Bare Metal 實體伺服器，我們提供最頂級的硬體規格支援。",
         servers_tab_all: "全部產品線",
+        servers_tab_all_short: "全部",
         servers_tab_vm: "虛擬機器 (VM)",
         servers_tab_bare: "裸機實體伺服器 (Bare Metal)",
         
@@ -775,6 +779,7 @@ const translations = {
         servers_title: "高效能数据中心服务器产品线",
         servers_desc: "从企业级虚拟机（VM）到高效能 HP Bare Metal 实体服务器，我们提供最顶级的硬件规格支持。",
         servers_tab_all: "全部产品线",
+        servers_tab_all_short: "全部",
         servers_tab_vm: "虚拟机 (VM)",
         servers_tab_bare: "裸机实体服务器 (Bare Metal)",
         

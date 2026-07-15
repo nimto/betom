@@ -751,6 +751,14 @@ header .container {
     white-space: nowrap;
 }
 
+.tab-btn .mobile-text {
+    display: none;
+}
+
+.tab-btn .desktop-text {
+    display: inline;
+}
+
 .tab-btn:hover {
     color: var(--text-main);
 }
@@ -1950,6 +1958,14 @@ footer {
     .tab-btn {
         padding: 0.6rem 1.4rem !important;
         font-size: 0.92rem !important;
+    }
+    
+    .tab-btn .desktop-text {
+        display: none !important;
+    }
+    
+    .tab-btn .mobile-text {
+        display: inline !important;
     }
 
     .server-card {
