@@ -196,9 +196,9 @@ header .container {
     transform-origin: 50px 50px;
 }
 
-/* Hover rotation and glowing effects on Cube */
+/* Hover rotation and glowing effects on Cube (X-offset 182px synchronized) */
 .logo a:hover .betom-logo-svg .isometric-cube {
-    transform: translate(185px, 3px) scale(0.72) rotateY(18deg) rotateX(-12deg);
+    transform: translate(182px, 3px) scale(0.72) rotateY(18deg) rotateX(-12deg);
     filter: drop-shadow(0 0 10px rgba(var(--accent-purple-rgb), 0.7));
 }
 
