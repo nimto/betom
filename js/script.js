@@ -339,6 +339,12 @@ ${message ? message : '없음'}`;
 
         const dict = translations[currentLang] || translations['en'];
 
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        
+        // Multi-language button names mapping
+        const confirmBtnLabel = currentLang === 'ko' ? '확인' : (currentLang === 'ja' ? '確認' : (currentLang === 'zh_tw' ? '確認' : (currentLang === 'zh_cn' ? '确认' : 'Confirm')));
+        const errorBtnLabel = currentLang === 'ko' ? '텔레그램 상담 연동' : (currentLang === 'ja' ? 'Telegramサポートへ' : (currentLang === 'zh_tw' ? '轉向Telegram諮詢' : (currentLang === 'zh_cn' ? '转向Telegram咨询' : 'Open Telegram Support')));
+
         // Securely call Netlify Serverless Function (No API token or Chat ID is exposed on client-side!)
         try {
             const response = await fetch('/api/send-inquiry', {
@@ -350,7 +356,19 @@ ${message ? message : '없음'}`;
             const resData = await response.json();
             
             if (response.ok && resData.success) {
-                alert(dict.modal_success || "Inquiry successfully sent!");
+                // Success SweetAlert2 Notification
+                Swal.fire({
+                    title: currentLang === 'ko' ? '전송 완료' : (currentLang === 'ja' ? '送信完了' : (currentLang === 'zh_tw' ? '傳送成功' : (currentLang === 'zh_cn' ? '发送成功' : 'Success!'))),
+                    text: dict.modal_success || "Inquiry successfully sent!",
+                    icon: 'success',
+                    background: isDark ? '#0c0f1d' : '#ffffff',
+                    color: isDark ? '#f3f4f6' : '#0f172a',
+                    confirmButtonColor: '#00f2fe',
+                    confirmButtonText: confirmBtnLabel,
+                    customClass: {
+                        popup: 'betom-swal2-popup'
+                    }
+                });
                 closeInquiryModal();
                 return;
             } else {
@@ -361,10 +379,22 @@ ${message ? message : '없음'}`;
         }
 
         // Fallback: Redirect to direct t.me link with prepopulated message text
-        alert(dict.modal_error || "Sending via Telegram bot failed. Redirecting to direct support chat...");
-        const encodedText = encodeURIComponent(messageText);
-        window.open(`https://t.me/betom_mike?text=${encodedText}`, '_blank');
-        closeInquiryModal();
+        Swal.fire({
+            title: currentLang === 'ko' ? '알림' : (currentLang === 'ja' ? '通知' : (currentLang === 'zh_tw' ? '提示' : (currentLang === 'zh_cn' ? '提示' : 'Notice'))),
+            text: dict.modal_error || "Sending via Telegram bot failed. Redirecting to direct support chat...",
+            icon: 'warning',
+            background: isDark ? '#0c0f1d' : '#ffffff',
+            color: isDark ? '#f3f4f6' : '#0f172a',
+            confirmButtonColor: '#9b51e0',
+            confirmButtonText: errorBtnLabel,
+            customClass: {
+                popup: 'betom-swal2-popup'
+            }
+        }).then(() => {
+            const encodedText = encodeURIComponent(messageText);
+            window.open(`https://t.me/betom_mike?text=${encodedText}`, '_blank');
+            closeInquiryModal();
+        });
     });
 
     // ==========================================

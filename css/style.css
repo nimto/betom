@@ -1991,3 +1991,35 @@ footer {
         padding: 3rem 1rem;
     }
 }
+
+/* ==========================================
+   17. SweetAlert2 Elegant Custom Styling
+   ========================================== */
+.betom-swal2-popup {
+    border-radius: 20px !important;
+    border: 1px solid var(--border-card) !important;
+    font-family: var(--font-body) !important;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4), var(--glow-shadow) !important;
+}
+
+.betom-swal2-popup .swal2-title {
+    font-family: var(--font-heading) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.5px !important;
+}
+
+.betom-swal2-popup .swal2-confirm {
+    border-radius: 50px !important;
+    font-family: var(--font-heading) !important;
+    font-weight: 600 !important;
+    padding: 0.8rem 2.2rem !important;
+    font-size: 1rem !important;
+}
+
+[data-theme="light"] .betom-swal2-popup .swal2-confirm {
+    color: #ffffff !important;
+}
+[data-theme="dark"] .betom-swal2-popup .swal2-confirm {
+    color: #0b0f19 !important;
+}
+
