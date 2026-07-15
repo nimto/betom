@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Betom IDC | Premium Hosting & Secure Data Center Solutions</title>
+    <meta name="description" content="Japan Tokyo-based low latency, high security premium data center service. Proxmox Virtual Machine (VM) hosting, Bare Metal physical servers, Cloudflare Magic Transit DDoS mitigation, and fully managed infrastructure solutions.">
+    <meta name="keywords" content="Betom IDC, Japan Data Center, Tokyo Server Hosting, VM Hosting, Bare Metal Server, Proxmox Ceph, Cloudflare Magic Transit, DDoS Protection, BCP DR, Load Balancing">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.betom.cloud/">
+    <meta property="og:title" content="Betom IDC | Premium Hosting & Secure Data Center Solutions">
+    <meta property="og:description" content="Tokyo-based low latency, high security premium data center service. Proxmox VM, Bare Metal, DDoS Protection fully supported.">
+    <meta property="og:image" content="assets/idc_hero_bg.png">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Menu Overlay for Off-canvas -->
+    <div class="menu-overlay" id="menu-overlay"></div>
+
+    <!-- Server Inquiry Modal -->
+    <div class="inquiry-modal" id="inquiry-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="btn-modal-close" aria-label="Close Modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-header">
+                <h3 id="modal-server-name">Standard VM</h3>
+                <div class="modal-server-price" id="modal-server-price">200,000 / mo</div>
+            </div>
+            <div class="modal-body">
+                <!-- Spec Summary -->
+                <div class="modal-specs-summary" id="modal-specs-summary">
+                    <!-- Specs will be dynamically populated -->
+                </div>
+                
+                <!-- Inquiry Form -->
+                <form id="form-inquiry">
+                    <!-- Contact -->
+                    <div class="form-group">
+                        <label for="inquiry-contact" data-i18n="modal_lbl_contact">Your Contact Info (Telegram @ID or Email) *</label>
+                        <input type="text" id="inquiry-contact" required placeholder="@username or your@email.com">
+                    </div>
+                    
+                    <!-- Hardware Upgrades -->
+                    <div class="form-group">
+                        <label data-i18n="modal_lbl_options">Hardware Upgrade Options</label>
+                        <div class="upgrade-options-grid">
+                            <label class="option-checkbox">
+                                <input type="checkbox" name="upgrades" value="RAM Upgrade">
+                                <span>RAM Expansion</span>
+                            </label>
+                            <label class="option-checkbox">
+                                <input type="checkbox" name="upgrades" value="SSD Expansion">
+                                <span>SSD/NVMe Storage Upgrade</span>
+                            </label>
+                            <label class="option-checkbox">
+                                <input type="checkbox" name="upgrades" value="Dedicated Uplink">
+                                <span>1Gbps Dedicated Link</span>
+                            </label>
+                            <label class="option-checkbox">
+                                <input type="checkbox" name="upgrades" value="Automated Backup">
+                                <span>Automated Backup Setup</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Message -->
+                    <div class="form-group">
+                        <label for="inquiry-message" data-i18n="modal_lbl_msg">Additional Requests / Workloads</label>
+                        <textarea id="inquiry-message" rows="3" placeholder="Describe your workloads, desired OS, or network configuration."></textarea>
+                    </div>
+                    
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary submit-btn" id="btn-modal-submit">
+                        <i class="fa-solid fa-paper-plane"></i> <span data-i18n="modal_btn_submit">Submit Inquiry</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Off-canvas Navigation Menu (Moved outside header to prevent Stacking Context bugs) -->
+    <nav class="nav-menu" id="main-nav-menu">
+        <div class="offcanvas-header">
+            <span class="offcanvas-title">MENU</span>
+            <button class="offcanvas-close" id="btn-offcanvas-close" aria-label="Close Menu">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="nav-links-wrapper">
+            <a href="#about" class="nav-link active" id="link-about" data-i18n="nav_about">About</a>
+            <a href="#servers" class="nav-link" id="link-servers" data-i18n="nav_servers">Servers</a>
+            <a href="#domains" class="nav-link" id="link-domains" data-i18n="nav_domains">Domains</a>
+            <a href="#features" class="nav-link" id="link-features" data-i18n="nav_features">Features</a>
+            <a href="#contact" class="nav-link" id="link-contact" data-i18n="nav_contact">Contact</a>
+        </div>
+        
+        <!-- Mobile Only Actions (Inside Off-canvas bottom) -->
+        <div class="mobile-only-actions">
+            <div class="mobile-action-row">
+                <!-- Mobile Language Selector -->
+                <div class="lang-selector" id="mobile-lang-selector">
+                    <button class="lang-btn" id="btn-mobile-lang-selector" aria-label="Choose Language">
+                        <img src="assets/flags/us.svg" alt="English" class="current-lang-flag-img">
+                    </button>
+                    <div class="lang-dropdown" id="dropdown-mobile-lang">
+                        <a href="#" data-lang="en"><img src="assets/flags/us.svg" alt="English"> English</a>
+                        <a href="#" data-lang="ko"><img src="assets/flags/kr.svg" alt="Korean"> 한국어</a>
+                        <a href="#" data-lang="ja"><img src="assets/flags/jp.svg" alt="Japanese"> 日本語</a>
+                        <a href="#" data-lang="zh_tw"><img src="assets/flags/tw.svg" alt="Traditional Chinese"> 繁體中文</a>
+                        <a href="#" data-lang="zh_cn"><img src="assets/flags/cn.svg" alt="Simplified Chinese"> 简体中文</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile Theme Toggle -->
+                <button class="theme-toggle-btn" id="btn-mobile-theme-toggle" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon moon-icon"></i>
+                    <i class="fa-solid fa-sun sun-icon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+       Header & Navigation
+       ========================================== -->
+    <header id="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="#main-hero" id="nav-logo" aria-label="Betom IDC Logo Home">
+                    <!-- Integrated wide SVG Logo: [Circuits BETOM] + [3D Purple Cube IDC] -->
+                    <svg class="betom-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" width="180" height="40" style="vertical-align: middle;">
+                        <defs>
+                            <!-- Gradients for BETOM Text -->
+                            <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#00f2fe" />
+                                <stop offset="60%" stop-color="#0077ff" />
+                                <stop offset="100%" stop-color="#053bf7" />
+                            </linearGradient>
+                            
+                            <!-- Gradients for 3D Cube -->
+                            <linearGradient id="cube-top-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#c084fc" />
+                                <stop offset="100%" stop-color="#7c3aed" />
+                            </linearGradient>
+                            <linearGradient id="cube-left-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#6d28d9" />
+                                <stop offset="100%" stop-color="#4c1d95" />
+                            </linearGradient>
+                            <linearGradient id="cube-right-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#5b21b6" />
+                                <stop offset="100%" stop-color="#2e1065" />
+                            </linearGradient>
+                            <filter id="cube-glow-effect">
+                                <feGaussianBlur stdDeviation="2.5" result="blur"/>
+                                <feMerge>
+                                    <feMergeNode in="blur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Left: BETOM Text with circuits overlay -->
+                        <g transform="translate(0, 43)">
+                            <!-- "BETOM" Text filled with gradient -->
+                            <text x="0" y="0" fill="url(#text-grad)" font-family="Outfit, Inter, sans-serif" font-weight="900" font-size="34" letter-spacing="-1">BETOM</text>
+                            
+                            <!-- Circuits overlaying the text for authentic tech look -->
+                            <!-- B area circuit -->
+                            <path class="circuit-path" d="M4, -26 L10, -26 L12, -18 L12, -5" stroke="#00f2fe" stroke-width="1.2" fill="none" opacity="0.65" />
+                            <circle cx="4" cy="-26" r="1.5" fill="#00f2fe" opacity="0.8" />
+                            <!-- E area circuit -->
+                            <path class="circuit-path" d="M45, -14 L55, -14 L59, -20 M45, -6 L53, -6" stroke="#00f2fe" stroke-width="1.2" fill="none" opacity="0.65" />
+                            <!-- T area circuit -->
+                            <path class="circuit-path" d="M78, -26 L78, -5" stroke="#00f2fe" stroke-width="1.2" fill="none" opacity="0.65" />
+                            <circle cx="78" cy="-5" r="1.5" fill="#00f2fe" opacity="0.8" />
+                            <!-- O area circuit -->
+                            <path class="circuit-path" d="M98, -15 A 7 7 0 1 1 112 -15" stroke="#00f2fe" stroke-width="1.2" fill="none" opacity="0.55" />
+                            <!-- M area circuit -->
+                            <path class="circuit-path" d="M126, -5 L132, -23 L138, -13 L144, -23 L150, -5" stroke="#00f2fe" stroke-width="1.2" fill="none" opacity="0.65" />
+                        </g>
+                        
+                        <!-- Right: 3D IT Server Cube (X offset = 175) -->
+                        <g transform="translate(185, 3) scale(0.68)" class="isometric-cube">
+                            <!-- Top Face -->
+                            <polygon points="50,15 85,32.5 50,50 15,32.5" fill="url(#cube-top-grad)" />
+                            <!-- Circuits on Top Face -->
+                            <path d="M30,25 L45,32.5 L45,42.5" stroke="#00f2fe" stroke-width="1.5" fill="none" opacity="0.8" />
+                            <path d="M70,25 L55,32.5 L55,42.5" stroke="#00f2fe" stroke-width="1.5" fill="none" opacity="0.8" />
+                            <circle cx="30" cy="25" r="2" fill="#00f2fe" />
+                            <circle cx="70" cy="25" r="2" fill="#00f2fe" />
+                            
+                            <!-- Left Face -->
+                            <polygon points="15,32.5 50,50 50,85 15,67.5" fill="url(#cube-left-grad)" />
+                            <text x="21" y="60" fill="#ffffff" font-family="Outfit, sans-serif" font-weight="900" font-size="12" transform="skewY(26.5)" opacity="0.95">IDC</text>
+                            
+                            <!-- Right Face -->
+                            <polygon points="50,50 85,32.5 85,67.5 50,85" fill="url(#cube-right-grad)" />
+                            <path d="M58,57 L72,50 L72,60" stroke="#00f2fe" stroke-width="1.5" fill="none" opacity="0.7" />
+                            <circle cx="72" cy="60" r="1.5" fill="#00f2fe" />
+                        </g>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <!-- Desktop Only Actions (Hidden on Mobile) -->
+                <div class="desktop-only-actions">
+                    <!-- Desktop Language Selector -->
+                    <div class="lang-selector" id="header-lang-selector">
+                        <button class="lang-btn" id="btn-lang-selector" aria-label="Choose Language">
+                            <img src="assets/flags/us.svg" alt="English" class="current-lang-flag-img">
+                        </button>
+                        <div class="lang-dropdown" id="dropdown-lang">
+                            <a href="#" data-lang="en"><img src="assets/flags/us.svg" alt="English"> English</a>
+                            <a href="#" data-lang="ko"><img src="assets/flags/kr.svg" alt="Korean"> 한국어</a>
+                            <a href="#" data-lang="ja"><img src="assets/flags/jp.svg" alt="Japanese"> 日本語</a>
+                            <a href="#" data-lang="zh_tw"><img src="assets/flags/tw.svg" alt="Traditional Chinese"> 繁體中文</a>
+                            <a href="#" data-lang="zh_cn"><img src="assets/flags/cn.svg" alt="Simplified Chinese"> 简体中文</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Desktop Theme Toggle Button -->
+                    <button class="theme-toggle-btn" id="btn-theme-toggle" aria-label="Toggle Theme">
+                        <i class="fa-solid fa-moon moon-icon"></i>
+                        <i class="fa-solid fa-sun sun-icon"></i>
+                    </button>
+                </div>
+                
+                <!-- Mobile Hamburger Menu Button -->
+                <div class="hamburger" id="btn-mobile-nav" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+       Hero Section
+       ========================================== -->
+    <section class="hero" id="main-hero">
+        <div class="hero-background" style="background-image: url('./assets/idc_hero_bg.png');" id="hero-bg-img"></div>
+        <div class="container">
+            <div class="badge" id="hero-status-badge" data-i18n="hero_badge">
+                Tokyo Local 24/7 Engineers On-Duty
+            </div>
+            <h1 class="hero-title" id="hero-main-title" data-i18n="hero_title">
+                Tokyo-Based Low Latency &<br><span>High Security Premium Infrastructure</span>
+            </h1>
+            <p class="hero-description" id="hero-main-desc" data-i18n="hero_desc">
+                Betom IDC combines state-of-the-art infrastructure with local expert engineering resources,
+                ensuring maximum performance and seamless business continuity.
+            </p>
+            <div class="hero-cta" id="hero-cta-buttons">
+                <a href="#servers" class="btn btn-primary" id="btn-hero-servers"><i class="fa-solid fa-server"></i> <span data-i18n="hero_cta_servers">View Server Lineup</span></a>
+                <a href="https://t.me/betom_mike" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="btn-hero-telegram"><i class="fa-brands fa-telegram"></i> <span data-i18n="hero_cta_telegram">Telegram Contact</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       About & Migration Section
+       ========================================== -->
+    <section class="about reveal" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content" id="about-intro-content">
+                    <span class="section-subtitle" data-i18n="about_subtitle">ABOUT BETOM IDC</span>
+                    <h3 data-i18n="about_title">Core Data Center Services in Tokyo, Japan</h3>
+                    <p data-i18n="about_desc">
+                        Established locally in Tokyo, Japan, Betom IDC places low latency and robust security at its core. 
+                        To satisfy demanding corporate workloads, we provide dedicated bare metal servers, high-performance cloud hosting, and granularly managed services.
+                    </p>
+                    
+                    <div class="feature-list" id="about-features-list">
+                        <div class="feature-item">
+                            <div class="feature-icon-wrapper"><i class="fa-solid fa-bolt"></i></div>
+                            <div class="feature-text">
+                                <h4 data-i18n="about_feat1_title">Ultra Low Latency Japan Network</h4>
+                                <p data-i18n="about_feat1_desc">Direct connection to high-speed Gigabit backbones like Softbank, KDDI, and Equinix for guaranteed local network speed.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon-wrapper"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div class="feature-text">
+                                <h4 data-i18n="about_feat2_title">Cloudflare Magic Transit DDoS Mitigation</h4>
+                                <p data-i18n="about_feat2_desc">Leveraging multi-Tbps global edge network capacity to block large-scale L3/L4/L7 threats instantly.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon-wrapper"><i class="fa-solid fa-headset"></i></div>
+                            <div class="feature-text">
+                                <h4 data-i18n="about_feat3_title">24/7/365 On-Site Engineering</h4>
+                                <p data-i18n="about_feat3_desc">Continuous monitoring, instant incident alert system, and rapid recovery assistance are active round the clock.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-card-wrapper" id="about-migration-card">
+                    <div class="about-card">
+                        <div class="about-card-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                        <h3 data-i18n="about_card_title">Legacy Server Migration</h3>
+                        <p data-i18n="about_card_desc">
+                            Transition your high-cost legacy physical servers or unpredictable AWS instances to Betom IDC high-availability VMs.
+                        </p>
+                        <div class="about-card-stat" id="stat-migration-saving" data-i18n="about_card_saving">MAX 60%</div>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="about_card_note">
+                            Achieve dramatic cost savings with predictable, transparent flat-rate monthly hosting.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       Servers Specifications Section
+       ========================================== -->
+    <section class="servers reveal" id="servers">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle" data-i18n="servers_subtitle">INFRASTRUCTURE SPECS</span>
+                <h2 class="section-title" data-i18n="servers_title">High-Performance Data Center Servers</h2>
+                <p class="section-desc" data-i18n="servers_desc">From enterprise-grade Virtual Machines (VM) to heavy-duty HP Bare Metal servers, we ensure top-tier hardware environments.</p>
+            </div>
+            
+            <!-- Tabs Wrapper with All Option -->
+            <div class="tabs-container" id="server-tabs-container">
+                <div class="tabs-wrapper">
+                    <button class="tab-btn active" data-tab="all" id="tab-btn-all" data-i18n="servers_tab_all">All Infrastructure</button>
+                    <button class="tab-btn" data-tab="vm" id="tab-btn-vm" data-i18n="servers_tab_vm">Virtual Machines (VM)</button>
+                    <button class="tab-btn" data-tab="bare" id="tab-btn-bare" data-i18n="servers_tab_bare">Bare Metal (Physical)</button>
+                </div>
+            </div>
+            
+            <!-- Single Unified Server Grid supporting filtering -->
+            <div class="server-grid active" id="server-main-grid">
+                
+                <!-- VM: Standard VM Card -->
+                <div class="server-card popular" data-category="vm" id="card-vm-standard">
+                    <div class="server-name" data-i18n="srv_vm_std_title">Standard VM</div>
+                    <p class="server-desc" data-i18n="srv_vm_std_desc">Standard cloud VM powered by Ceph distributed storage, delivering high availability and elastic scalability.</p>
+                    <div class="server-price">
+                        <span class="price-currency" data-i18n="srv_vm_std_period"> / mo</span>
+                        <span class="price-amount" data-i18n="srv_vm_std_price">200,000</span>
+                    </div>
+                    <div class="server-specs">
+                        <div class="spec-item"><span class="spec-label">CPU</span><span class="spec-val" data-i18n="srv_vm_std_cpu">vCPU (4 Cores)</span></div>
+                        <div class="spec-item"><span class="spec-label">Memory</span><span class="spec-val" data-i18n="srv_vm_std_ram">8 GB</span></div>
+                        <div class="spec-item"><span class="spec-label">Storage</span><span class="spec-val" data-i18n="srv_vm_std_storage">250 GB Ceph Cluster</span></div>
+                        <div class="spec-item"><span class="spec-label">Operating System</span><span class="spec-val" data-i18n="srv_vm_std_os">Linux (Preferred)</span></div>
+                        <div class="spec-item"><span class="spec-label">Storage Mirroring</span><span class="spec-val" data-i18n="srv_vm_std_mirror">RAID 1 Supported</span></div>
+                    </div>
+                    <div class="crypto-tag"><i class="fa-brands fa-bitcoin"></i> <span data-i18n="srv_crypto">Cryptocurrency accepted</span></div>
+                    <button class="btn btn-primary server-btn" id="btn-buy-vm"><i class="fa-solid fa-arrow-right"></i> <span data-i18n="srv_btn_deploy">Contact for Deploy</span></button>
+                </div>
+                
+                <!-- VM: Remote Desktop Hosting Card -->
+                <div class="server-card" data-category="vm" id="card-desktop-remote">
+                    <div class="server-name" data-i18n="srv_desktop_title">Remote Desktop Node</div>
+                    <p class="server-desc" data-i18n="srv_desktop_desc">High-performance remote desktop nodes optimized for GUI testing and Windows application runtimes.</p>
+                    <div class="server-price">
+                        <span class="price-currency" data-i18n="srv_desktop_period"> / mo</span>
+                        <span class="price-amount" data-i18n="srv_desktop_price">400,000</span>
+                    </div>
+                    <div class="server-specs">
+                        <div class="spec-item"><span class="spec-label">CPU</span><span class="spec-val" data-i18n="srv_desktop_cpu">Intel 12th Gen i5</span></div>
+                        <div class="spec-item"><span class="spec-label">Memory</span><span class="spec-val" data-i18n="srv_desktop_ram">8 GB</span></div>
+                        <div class="spec-item"><span class="spec-label">Storage</span><span class="spec-val" data-i18n="srv_desktop_storage">250 GB (No RAID)</span></div>
+                        <div class="spec-item"><span class="spec-label">Operating System</span><span class="spec-val" data-i18n="srv_desktop_os">Windows (Preferred)</span></div>
+                        <div class="spec-item"><span class="spec-label">Network Uplink</span><span class="spec-val" data-i18n="srv_desktop_mirror">1 Gbps Shared Link</span></div>
+                    </div>
+                    <div class="crypto-tag"><i class="fa-brands fa-bitcoin"></i> <span data-i18n="srv_crypto">Cryptocurrency accepted</span></div>
+                    <button class="btn btn-secondary server-btn" id="btn-buy-desktop"><i class="fa-solid fa-arrow-right"></i> <span data-i18n="srv_btn_deploy">Contact for Deploy</span></button>
+                </div>
+
+                <!-- BARE: HP DL360 Gen6 -->
+                <div class="server-card" data-category="bare" id="card-bare-gen6">
+                    <div class="server-name" data-i18n="srv_gen6_title">HP DL360 Gen6</div>
+                    <p class="server-desc" data-i18n="srv_gen6_desc">Cost-efficient hardware dedicated for startups, lightweight testing environments, and auxiliary nodes.</p>
+                    <div class="server-price">
+                        <span class="price-currency" data-i18n="srv_desktop_period"> / mo</span>
+                        <span class="price-amount" data-i18n="srv_gen6_price">650,000</span>
+                    </div>
+                    <div class="server-specs">
+                        <div class="spec-item"><span class="spec-label">CPU</span><span class="spec-val" data-i18n="srv_gen6_cpu">Dual Intel Xeon X5650</span></div>
+                        <div class="spec-item"><span class="spec-label">Memory</span><span class="spec-val" data-i18n="srv_gen6_ram">16 GB DDR3</span></div>
+                        <div class="spec-item"><span class="spec-label">Storage</span><span class="spec-val" data-i18n="srv_gen6_storage">250GB (RAID1) + 500GB (RAID1)</span></div>
+                        <div class="spec-item"><span class="spec-label">Operating System</span><span class="spec-val" data-i18n="srv_common_os">MS Server / Linux</span></div>
+                        <div class="spec-item"><span class="spec-label">Secured Uplink</span><span class="spec-val" data-i18n="srv_common_sec">Basic DDoS Shield Included</span></div>
+                    </div>
+                    <div class="crypto-tag"><i class="fa-brands fa-bitcoin"></i> <span data-i18n="srv_crypto">Crypto accepted</span></div>
+                    <button class="btn btn-secondary server-btn" id="btn-buy-gen6"><i class="fa-solid fa-arrow-right"></i> <span data-i18n="srv_btn_deploy">Contact for Deploy</span></button>
+                </div>
+
+                <!-- BARE: HP DL360 Gen8 -->
+                <div class="server-card" data-category="bare" id="card-bare-gen8">
+                    <div class="server-name" data-i18n="srv_gen8_title">HP DL360 Gen8</div>
+                    <p class="server-desc" data-i18n="srv_gen8_desc">Practical configurations providing high stability for business-critical web servers and DB administration.</p>
+                    <div class="server-price">
+                        <span class="price-currency" data-i18n="srv_desktop_period"> / mo</span>
+                        <span class="price-amount" data-i18n="srv_gen8_price">750,000</span>
+                    </div>
+                    <div class="server-specs">
+                        <div class="spec-item"><span class="spec-label">CPU</span><span class="spec-val" data-i18n="srv_gen8_cpu">Dual Intel Xeon E5-2690v2</span></div>
+                        <div class="spec-item"><span class="spec-label">Memory</span><span class="spec-val" data-i18n="srv_gen8_ram">16 GB DDR3</span></div>
+                        <div class="spec-item"><span class="spec-label">Storage</span><span class="spec-val" data-i18n="srv_gen8_storage">250GB (RAID1) + 500GB (RAID1)</span></div>
+                        <div class="spec-item"><span class="spec-label">Operating System</span><span class="spec-val" data-i18n="srv_common_os">MS Server / Linux</span></div>
+                        <div class="spec-item"><span class="spec-label">Secured Uplink</span><span class="spec-val" data-i18n="srv_common_sec">Basic DDoS Shield Included</span></div>
+                    </div>
+                    <div class="crypto-tag"><i class="fa-brands fa-bitcoin"></i> <span data-i18n="srv_crypto">Crypto accepted</span></div>
+                    <button class="btn btn-secondary server-btn" id="btn-buy-gen8"><i class="fa-solid fa-arrow-right"></i> <span data-i18n="srv_btn_deploy">Contact for Deploy</span></button>
+                </div>
+
+                <!-- BARE: HP DL360 Gen9 -->
+                <div class="server-card popular" data-category="bare" id="card-bare-gen9">
+                    <div class="server-name" data-i18n="srv_gen9_title">HP DL360 Gen9</div>
+                    <p class="server-desc" data-i18n="srv_gen9_desc">Top choice for high-load applications and high session counts requiring massive database and CPU processing.</p>
+                    <div class="server-price">
+                        <span class="price-currency" data-i18n="srv_desktop_period"> / mo</span>
+                        <span class="price-amount" data-i18n="srv_gen9_price">850,000</span>
+                    </div>
+                    <div class="server-specs">
+                        <div class="spec-item"><span class="spec-label">CPU</span><span class="spec-val" data-i18n="srv_gen9_cpu">Dual Intel Xeon E5-2690v4</span></div>
+                        <div class="spec-item"><span class="spec-label">Memory</span><span class="spec-val" data-i18n="srv_gen9_ram">16 GB DDR4</span></div>
+                        <div class="spec-item"><span class="spec-label">Storage</span><span class="spec-val" data-i18n="srv_gen9_storage">250GB (RAID1) + 500GB (RAID1)</span></div>
+                        <div class="spec-item"><span class="spec-label">Operating System</span><span class="spec-val" data-i18n="srv_common_os">MS Server / Linux</span></div>
+                        <div class="spec-item"><span class="spec-label">Secured Uplink</span><span class="spec-val" data-i18n="srv_common_sec">Basic DDoS Shield Included</span></div>
+                    </div>
+                    <div class="crypto-tag"><i class="fa-brands fa-bitcoin"></i> <span data-i18n="srv_crypto">Crypto accepted</span></div>
+                    <button class="btn btn-primary server-btn" id="btn-buy-gen9"><i class="fa-solid fa-arrow-right"></i> <span data-i18n="srv_btn_deploy">Contact for Deploy</span></button>
+                </div>
+
+                <!-- BARE: HP DL360 Gen10 -->
+                <div class="server-card" data-category="bare" id="card-bare-gen10">
+                    <div class="server-name" data-i18n="srv_gen10_title">HP DL360 Gen10</div>
+                    <p class="server-desc" data-i18n="srv_gen10_desc">Our flagship bare metal server designed for real-time financial services, heavy compute, and enterprise backbones.</p>
+                    <div class="server-price">
+                        <span class="price-currency" data-i18n="srv_desktop_period"> / mo</span>
+                        <span class="price-amount" data-i18n="srv_gen10_price">1,000,000</span>
+                    </div>
+                    <div class="server-specs">
+                        <div class="spec-item"><span class="spec-label">CPU</span><span class="spec-val" data-i18n="srv_gen10_cpu">Dual Intel Xeon Gold 6134</span></div>
+                        <div class="spec-item"><span class="spec-label">Memory</span><span class="spec-val" data-i18n="srv_gen10_ram">16 GB DDR4 High-Speed</span></div>
+                        <div class="spec-item"><span class="spec-label">Storage</span><span class="spec-val" data-i18n="srv_gen10_storage">250GB (RAID1) + 500GB (RAID1)</span></div>
+                        <div class="spec-item"><span class="spec-label">Operating System</span><span class="spec-val" data-i18n="srv_common_os">MS Server / Linux</span></div>
+                        <div class="spec-item"><span class="spec-label">Secured Uplink</span><span class="spec-val" data-i18n="srv_common_sec">Basic DDoS Shield Included</span></div>
+                    </div>
+                    <div class="crypto-tag"><i class="fa-brands fa-bitcoin"></i> <span data-i18n="srv_crypto">Crypto accepted</span></div>
+                    <button class="btn btn-secondary server-btn" id="btn-buy-gen10"><i class="fa-solid fa-arrow-right"></i> <span data-i18n="srv_btn_deploy">Contact for Deploy</span></button>
+                </div>
+            </div>
+            
+            <!-- Upgrade Details -->
+            <div class="upgrade-box" id="server-upgrade-box">
+                <div class="upgrade-content">
+                    <h3 data-i18n="upgrade_title"><i class="fa-solid fa-circle-arrow-up"></i> Hardware Upgrade Options Available</h3>
+                    <p data-i18n="upgrade_desc">
+                        Break limits on your physical HP DL360 server. Custom setup of high-end Intel Xeon CPUs, expanded memory allocations, and high-performance NVMe SSDs are ready to minimize storage disk latency and fit your exact workloads.
+                    </p>
+                </div>
+                <div>
+                    <button class="btn btn-secondary" id="btn-upgrade-consult"><i class="fa-solid fa-sliders"></i> <span data-i18n="upgrade_btn">Consultation</span></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       Security & Network Section
+       ========================================== -->
+    <section class="security reveal" id="security">
+        <div class="container">
+            <div class="security-grid">
+                <div class="security-visual" id="network-security-visual">
+                    <div class="shield-container"></div>
+                    <div class="shield-icon-wrapper" id="wrapper-shield-icon">
+                        <i class="fa-solid fa-shield-virus"></i>
+                    </div>
+                </div>
+                
+                <div class="security-content" id="network-security-text">
+                    <span class="section-subtitle" data-i18n="sec_subtitle">ADVANCED NETWORK & SECURITY</span>
+                    <h3 data-i18n="sec_title">Cloudflare Magic Transit Operations</h3>
+                    <p data-i18n="sec_desc">
+                        Through our technology partnership with Cloudflare, multi-Tbps global edge filtering works natively to filter and scrubs malicious DDoS traffic. 
+                        We deliver zero-latency clean packets directly to your servers, keeping the infrastructure protected against modern L3, L4, and L7 attacks.
+                    </p>
+                    
+                    <div class="security-features" id="security-subfeatures">
+                        <div class="sec-feat-item">
+                            <div class="sec-feat-icon"><i class="fa-solid fa-network-wired"></i></div>
+                            <div class="sec-feat-text">
+                                <h4 data-i18n="sec_feat1_title">Magic Transit Implementation</h4>
+                                <p data-i18n="sec_feat1_desc">Easily protect your on-premise, cloud, or hybrid network infrastructure without complex configuration.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="sec-feat-item">
+                            <div class="sec-feat-icon"><i class="fa-solid fa-server"></i></div>
+                            <div class="sec-feat-text">
+                                <h4 data-i18n="sec_feat2_title">L2/L3 Switched & Firewall Management</h4>
+                                <p data-i18n="sec_feat2_desc">Our security engineers manage switch configurations, physical ports, and custom firewall rule structures on your behalf.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="sec-feat-item">
+                            <div class="sec-feat-icon"><i class="fa-solid fa-route"></i></div>
+                            <div class="sec-feat-text">
+                                <h4 data-i18n="sec_feat3_title">GSLB & DNS Redundancy</h4>
+                                <p data-i18n="sec_feat3_desc">Global Server Load Balancing (GSLB) policies reroute incoming client sessions to live nodes if regional outages occur.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       Managed Services Section
+       ========================================== -->
+    <section class="services reveal" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle" data-i18n="feat_subtitle">MANAGED SERVICES</span>
+                <h2 class="section-title" data-i18n="feat_title">Enterprise Infrastructure Management</h2>
+                <p class="section-desc" data-i18n="feat_desc">From virtualization clusters to automated disaster recovery and security audit compliances, we take care of it all.</p>
+            </div>
+            
+            <div class="services-grid" id="managed-services-grid">
+                <!-- Proxmox -->
+                <div class="service-item-card" id="card-feature-proxmox">
+                    <div class="service-card-icon"><i class="fa-solid fa-cubes"></i></div>
+                    <h3 data-i18n="feat_p_title">Proxmox HA Ceph Cluster</h3>
+                    <p data-i18n="feat_p_desc">Software-defined storage mirroring delivers total data redundancy and unlimited storage scale-out capacity.</p>
+                </div>
+                
+                <!-- RAID 1 -->
+                <div class="service-item-card" id="card-feature-raid">
+                    <div class="service-card-icon"><i class="fa-solid fa-hard-drive"></i></div>
+                    <h3 data-i18n="feat_r_title">RAID 1 Disk Mirroring</h3>
+                    <p data-i18n="feat_r_desc">All physical servers are built with hardware RAID 1 configurations to protect instances against single-drive hardware faults.</p>
+                </div>
+                
+                <!-- Load Balancing -->
+                <div class="service-item-card" id="card-feature-lb">
+                    <div class="service-card-icon"><i class="fa-solid fa-code-fork"></i></div>
+                    <h3 data-i18n="feat_l_title">Load Balancer Administration</h3>
+                    <p data-i18n="feat_l_desc">Deployment, optimization, and constant health check verification processes to handle traffic spikes smoothly.</p>
+                </div>
+                
+                <!-- Disaster Recovery -->
+                <div class="service-item-card" id="card-feature-dr">
+                    <div class="service-card-icon"><i class="fa-solid fa-rotate-left"></i></div>
+                    <h3 data-i18n="feat_d_title">Disaster Recovery (BCP / DR)</h3>
+                    <p data-i18n="feat_d_desc">Offsite geo-redundant backups, instant snapshots, and recovery processes to keep operations uninterrupted.</p>
+                </div>
+                
+                <!-- IDS/IPS -->
+                <div class="service-item-card" id="card-feature-ids">
+                    <div class="service-card-icon"><i class="fa-solid fa-user-shield"></i></div>
+                    <h3 data-i18n="feat_i_title">Intrusion Detection & Prevention</h3>
+                    <p data-i18n="feat_i_desc">ML-based threat pattern recognition identifies and blocks advanced bypass techniques and zero-day vulnerabilities.</p>
+                </div>
+                
+                <!-- Compliance -->
+                <div class="service-item-card" id="card-feature-audit">
+                    <div class="service-card-icon"><i class="fa-solid fa-file-shield"></i></div>
+                    <h3 data-i18n="feat_a_title">Security Audit & Compliance</h3>
+                    <p data-i18n="feat_a_desc">Regular penetration testing, proactive vulnerability patches, and SSL/TLS management to retain rigid security positions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       Domains Section
+       ========================================== -->
+    <section class="domains reveal" id="domains">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle" data-i18n="dom_subtitle">DOMAIN MANAGEMENT</span>
+                <h2 class="section-title" data-i18n="dom_title">All-in-One Domain Administration</h2>
+                <p class="section-desc" data-i18n="dom_desc">From secured registrations and migrations to global DNS routing, we handle your domains seamlessly.</p>
+            </div>
+            
+            <div class="domains-grid" id="domains-services-grid">
+                <!-- Registration -->
+                <div class="domain-feature-card" id="card-domain-reg">
+                    <div class="domain-feature-icon"><i class="fa-solid fa-cart-plus"></i></div>
+                    <h3 data-i18n="dom_feat1_title">Registration & Easy Transfer</h3>
+                    <p data-i18n="dom_feat1_desc">Secure new business names or transfer existing domain authorities to our platform under protected ownership verification.</p>
+                </div>
+                
+                <!-- DNS Admin -->
+                <div class="domain-feature-card" id="card-domain-dns">
+                    <div class="domain-feature-icon"><i class="fa-solid fa-globe"></i></div>
+                    <h3 data-i18n="dom_feat2_title">Anycast DNS Record Control</h3>
+                    <p data-i18n="dom_feat2_desc">Manage A, CNAME, MX, and TXT records across a globally distributed Anycast network for minimal resolution times.</p>
+                </div>
+                
+                <!-- Whois Privacy -->
+                <div class="domain-feature-card" id="card-domain-whois">
+                    <div class="domain-feature-icon"><i class="fa-solid fa-user-ninja"></i></div>
+                    <h3 data-i18n="dom_feat3_title">Whois Privacy Protection</h3>
+                    <p data-i18n="dom_feat3_desc">Shield your registered personal details on public WHOIS databases to eliminate marketing calls, spams, and identity threats.</p>
+                </div>
+                
+                <!-- Lock -->
+                <div class="domain-feature-card" id="card-domain-lock">
+                    <div class="domain-feature-icon"><i class="fa-solid fa-lock"></i></div>
+                    <h3 data-i18n="dom_feat4_title">Transfer Theft Prevention</h3>
+                    <p data-i18n="dom_feat4_desc">Apply registrar-level locks to stop unauthorized transfer requests or malicious DNS hijacking attempts completely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       Partnerships Section (Brand Logos & Hover UX)
+       ========================================== -->
+    <section class="partners reveal" id="partnerships">
+        <div class="container">
+            <div class="section-header" style="margin-bottom: 3rem;">
+                <span class="section-subtitle" data-i18n="part_subtitle">GLOBAL PARTNERS</span>
+                <h3 style="font-size: 1.8rem; font-weight:700;" data-i18n="part_title">Global Tech Partnerships</h3>
+            </div>
+        </div>
+        
+        <div class="partners-slider" id="partners-marquee-slider">
+            <div class="partners-track">
+                <!-- Track Part 1 (First Set) -->
+                <div class="partner-card" id="part-proxmox-1">
+                    <div class="partner-logo-img"><img src="assets/partners/proxmox.svg" alt="Proxmox"></div>
+                    <div class="partner-hover-info">
+                        <h4>Proxmox</h4>
+                        <p data-i18n="part_proxmox_desc">Virt & Ceph Storage</p>
+                    </div>
+                </div>
+                <div class="partner-card" id="part-cloudflare-1">
+                    <div class="partner-logo-img"><img src="assets/partners/cloudflare.svg" alt="Cloudflare"></div>
+                    <div class="partner-hover-info">
+                        <h4>Cloudflare</h4>
+                        <p data-i18n="part_cloudflare_desc">Edge Net & DDoS Mitigation</p>
+                    </div>
+                </div>
+                <div class="partner-card" id="part-softbank-1">
+                    <div class="partner-logo-img"><img src="assets/partners/softbank.svg" alt="Softbank"></div>
+                    <div class="partner-hover-info">
+                        <h4>Softbank</h4>
+                        <p data-i18n="part_softbank_desc">DDoS Blackhole Routing</p>
+                    </div>
+                </div>
+                <div class="partner-card" id="part-kddi-1">
+                    <div class="partner-logo-img"><img src="assets/partners/kddi.svg" alt="KDDI"></div>
+                    <div class="partner-hover-info">
+                        <h4>KDDI</h4>
+                        <p data-i18n="part_kddi_desc">Web Comm Gigabit Net</p>
+                    </div>
+                </div>
+                <div class="partner-card" id="part-equinix-1">
+                    <div class="partner-logo-img"><img src="assets/partners/equinix.svg" alt="Equinix"></div>
+                    <div class="partner-hover-info">
+                        <h4>Equinix</h4>
+                        <p data-i18n="part_equinix_desc">Global Interconnection</p>
+                    </div>
+                </div>
+                <div class="partner-card" id="part-usen-1">
+                    <div class="partner-logo-img"><img src="assets/partners/usen.svg" alt="USEN"></div>
+                    <div class="partner-hover-info">
+                        <h4>USEN</h4>
+                        <p data-i18n="part_usen_desc">Dedicated Fiber Net</p>
+                    </div>
+                </div>
+                <div class="partner-card" id="part-aws-1">
+                    <div class="partner-logo-img"><img src="assets/partners/aws.svg" alt="Amazon Web Service"></div>
+                    <div class="partner-hover-info">
+                        <h4>AWS</h4>
+                        <p data-i18n="part_aws_desc">Cloud Backup Solutions</p>
+                    </div>
+                </div>
+                <div class="partner-card" id="part-cisco-1">
+                    <div class="partner-logo-img"><img src="assets/partners/cisco.svg" alt="Cisco"></div>
+                    <div class="partner-hover-info">
+                        <h4>Cisco</h4>
+                        <p data-i18n="part_cisco_desc">Core Backbone & Switches</p>
+                    </div>
+                </div>
+                
+                <!-- Track Part 2 (Duplicate for Seamless Infinite Marquee Loop) -->
+                <div class="partner-card" id="part-proxmox-2">
+                    <div class="partner-logo-img"><img src="assets/partners/proxmox.svg" alt="Proxmox"></div>
+                    <div class="partner-hover-info">
+                        <h4>Proxmox</h4>
+                        <p data-i18n="part_proxmox_desc">Virt & Ceph Storage</p>
+                    </div>
+                </div>
+                <div class="partner-card" id="part-cloudflare-2">
+                    <div class="partner-logo-img"><img src="assets/partners/cloudflare.svg" alt="Cloudflare"></div>
+                    <div class="partner-hover-info">
+                        <h4>Cloudflare</h4>
+                        <p data-i18n="part_cloudflare_desc">Edge Net & DDoS Mitigation</p>
+                    </div>
+                </div>
+                <div class="partner-card" id="part-softbank-2">
+                    <div class="partner-logo-img"><img src="assets/partners/softbank.svg" alt="Softbank"></div>
+                    <div class="partner-hover-info">
+                        <h4>Softbank</h4>
+                        <p data-i18n="part_softbank_desc">DDoS Blackhole Routing</p>
+                    </div>
+                </div>
+                <div class="partner-card" id="part-kddi-2">
+                    <div class="partner-logo-img"><img src="assets/partners/kddi.svg" alt="KDDI"></div>
+                    <div class="partner-hover-info">
+                        <h4>KDDI</h4>
+                        <p data-i18n="part_kddi_desc">Web Comm Gigabit Net</p>
+                    </div>
+                </div>
+                <div class="partner-card" id="part-equinix-2">
+                    <div class="partner-logo-img"><img src="assets/partners/equinix.svg" alt="Equinix"></div>
+                    <div class="partner-hover-info">
+                        <h4>Equinix</h4>
+                        <p data-i18n="part_equinix_desc">Global Interconnection</p>
+                    </div>
+                </div>
+                <div class="partner-card" id="part-usen-2">
+                    <div class="partner-logo-img"><img src="assets/partners/usen.svg" alt="USEN"></div>
+                    <div class="partner-hover-info">
+                        <h4>USEN</h4>
+                        <p data-i18n="part_usen_desc">Dedicated Fiber Net</p>
+                    </div>
+                </div>
+                <div class="partner-card" id="part-aws-2">
+                    <div class="partner-logo-img"><img src="assets/partners/aws.svg" alt="Amazon Web Service"></div>
+                    <div class="partner-hover-info">
+                        <h4>AWS</h4>
+                        <p data-i18n="part_aws_desc">Cloud Backup Solutions</p>
+                    </div>
+                </div>
+                <div class="partner-card" id="part-cisco-2">
+                    <div class="partner-logo-img"><img src="assets/partners/cisco.svg" alt="Cisco"></div>
+                    <div class="partner-hover-info">
+                        <h4>Cisco</h4>
+                        <p data-i18n="part_cisco_desc">Core Backbone & Switches</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       Contact & Telegram Section
+       ========================================== -->
+    <section class="contact reveal" id="contact">
+        <div class="container">
+            <div class="contact-box" id="contact-inner-box">
+                <div class="contact-icon" id="icon-contact-pulse"><i class="fa-solid fa-headset"></i></div>
+                <h2 data-i18n="ct_title">Start Premium Infrastructure Consulting</h2>
+                <p data-i18n="ct_desc">
+                    Betom IDC's infrastructure architects will consult you directly on custom-tailored server setups and network defenses fitting your exact workloads.
+                </p>
+                
+                <div class="contact-methods" id="contact-details-row">
+                    <div class="contact-method">
+                        <span class="method-label" data-i18n="ct_lbl_tg">Telegram Support</span>
+                        <a href="https://t.me/betom_mike" target="_blank" rel="noopener noreferrer" class="method-value" style="color:var(--accent-cyan);">@betom_mike</a>
+                    </div>
+                    <div class="contact-method">
+                        <span class="method-label" data-i18n="ct_lbl_mail">Official Email</span>
+                        <a href="mailto:info@betom.cloud" class="method-value">info@betom.cloud</a>
+                    </div>
+                    <div class="contact-method">
+                        <span class="method-label" data-i18n="ct_lbl_tel">On-Site HotLine (Japan)</span>
+                        <span class="method-value">+81-70-9231-xxxx</span>
+                    </div>
+                </div>
+                
+                <a href="https://t.me/betom_mike" target="_blank" rel="noopener noreferrer" class="btn btn-primary telegram-btn" id="btn-submit-telegram">
+                    <i class="fa-brands fa-telegram"></i> <span data-i18n="ct_btn">Request Instant Support via Telegram</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       Footer
+       ========================================== -->
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about" id="footer-about-info">
+                    <h3>BETOM IDC</h3>
+                    <p data-i18n="f_desc">
+                        Based in Tokyo, Japan, we serve clients globally with low latency, high security cloud VMs and dedicated physical servers.
+                    </p>
+                </div>
+                
+                <div class="footer-links" id="footer-quick-links">
+                    <h4 data-i18n="f_quick">Quick Links</h4>
+                    <ul>
+                        <li><a href="#about" data-i18n="nav_about">About</a></li>
+                        <li><a href="#servers" data-i18n="nav_servers">Servers</a></li>
+                        <li><a href="#domains" data-i18n="nav_domains">Domains</a></li>
+                        <li><a href="#features" data-i18n="nav_features">Features</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links" id="footer-partner-links">
+                    <h4 data-i18n="f_core">Core Services</h4>
+                    <ul>
+                        <li><a href="#features" data-i18n="feat_p_title">Proxmox HA Ceph Cluster</a></li>
+                        <li><a href="#security" data-i18n="sec_title">Cloudflare Magic Transit</a></li>
+                        <li><a href="#features" data-i18n="feat_d_title">Disaster Recovery (BCP / DR)</a></li>
+                        <li><a href="#features" data-i18n="feat_a_title">Security Audit & Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom" id="footer-bottom-bar">
+                <p data-i18n="f_copy">&copy; 2026 Betom IDC Japan. All rights reserved. (Tokyo local 24/7 infrastructure control active)</p>
+                <div style="display:flex; gap:1.5rem;">
+                    <a href="#main-hero" data-i18n="f_up">Back to Top</a>
+                    <a href="https://t.me/betom_mike" target="_blank" rel="noopener noreferrer" data-i18n="f_channel">Telegram Channel</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Links -->
+    <script src="js/translations.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

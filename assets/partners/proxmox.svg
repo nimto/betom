@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <path d="M15 15 H32 L42 30 L32 45 H15 V15 Z" fill="#F26522"/>
+  <path d="M37 15 H47 V45 H37 Z" fill="#3C3C3C"/>
+  <text x="58" y="40" font-family="'Outfit', 'Inter', sans-serif" font-weight="800" font-size="22" fill="#F26522" letter-spacing="-0.5">PROXMOX</text>
+</svg>

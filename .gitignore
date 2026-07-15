@@ -1,0 +1,17 @@
+# Local Netlify files
+.netlify/
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Dependency directories
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.local
