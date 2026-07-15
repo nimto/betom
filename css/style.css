@@ -1532,16 +1532,42 @@ footer {
 
 .modal-close {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    font-size: 1.5rem;
-    color: var(--text-muted);
+    top: 1.2rem;
+    right: 1.2rem;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
     transition: var(--transition-smooth);
+    z-index: 10002;
+}
+
+.modal-close::before,
+.modal-close::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 1px;
+    background-color: var(--text-main);
+    transition: background-color var(--transition-smooth);
+}
+
+.modal-close::before {
+    transform: rotate(45deg);
+}
+
+.modal-close::after {
+    transform: rotate(-45deg);
 }
 
 .modal-close:hover {
-    color: var(--text-main);
-    transform: rotate(90deg);
+    opacity: 1;
+    transform: scale(1.1) rotate(90deg);
 }
 
 .modal-header {
@@ -1555,6 +1581,7 @@ footer {
     font-size: 1.8rem;
     font-weight: 800;
     margin-bottom: 0.4rem;
+    padding-right: 2.2rem;
 }
 
 .modal-server-price {
