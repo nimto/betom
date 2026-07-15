@@ -186,26 +186,18 @@ header .container {
     align-items: center;
 }
 
-/* Integrated Wide SVG Logo Motion */
-.betom-logo-svg {
+/* Official Logo Image Styling & Hover UX */
+.betom-logo-img {
+    height: 40px;
+    width: auto;
+    display: block;
     transition: var(--transition-smooth);
+    vertical-align: middle;
 }
 
-.betom-logo-svg .isometric-cube {
-    transition: var(--transition-smooth);
-    transform-origin: 50px 50px;
-}
-
-/* Hover rotation and glowing effects on Cube (X-offset 182px synchronized) */
-.logo a:hover .betom-logo-svg .isometric-cube {
-    transform: translate(182px, 3px) scale(0.72) rotateY(18deg) rotateX(-12deg);
-    filter: drop-shadow(0 0 10px rgba(var(--accent-purple-rgb), 0.7));
-}
-
-.logo a:hover .betom-logo-svg .circuit-path {
-    stroke: var(--accent-cyan);
-    opacity: 0.95;
-    filter: drop-shadow(0 0 4px var(--accent-cyan));
+.logo a:hover .betom-logo-img {
+    transform: scale(1.05);
+    filter: drop-shadow(0 4px 12px rgba(var(--accent-cyan-rgb), 0.3));
 }
 
 /* Nav Menu (Moved outside Header in DOM, styled relative to viewport) */
@@ -1844,9 +1836,8 @@ footer {
     }
 
     /* Mobile integrated wide logo scale */
-    .betom-logo-svg {
-        width: 145px;
-        height: auto;
+    .betom-logo-img {
+        height: 32px;
     }
 
     .hero-title {
