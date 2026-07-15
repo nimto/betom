@@ -748,6 +748,7 @@ header .container {
     color: var(--text-muted);
     font-size: 1rem;
     transition: var(--transition-smooth);
+    white-space: nowrap;
 }
 
 .tab-btn:hover {
@@ -1925,6 +1926,32 @@ footer {
         padding: 2.5rem 1.5rem;
     }
     
+    /* Mobile Sort Tabs Optimization */
+    .tabs-container {
+        justify-content: flex-start !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        width: 100% !important;
+        padding: 0.2rem 0 0.8rem 0 !important;
+        scrollbar-width: none !important; /* Firefox */
+    }
+    
+    .tabs-container::-webkit-scrollbar {
+        display: none !important; /* Chrome/Safari */
+    }
+    
+    .tabs-wrapper {
+        width: max-content !important;
+        display: inline-flex !important;
+        border-radius: 50px !important;
+        margin: 0 auto !important;
+    }
+    
+    .tab-btn {
+        padding: 0.6rem 1.4rem !important;
+        font-size: 0.92rem !important;
+    }
+
     .server-card {
         padding: 2rem 1.5rem;
     }
