@@ -1609,7 +1609,7 @@ footer {
     background: rgba(255, 255, 255, 0.05);
 }
 
-/* Luxury Switch Toggle Buttons */
+/* Luxury Front Switch Toggle Buttons - Compact Size Optimized */
 .upgrade-options-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -1619,16 +1619,16 @@ footer {
 .option-switch {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start; /* Switch comes first, followed by label */
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border-card);
     border-radius: 12px;
-    padding: 0.9rem 1.2rem;
+    padding: 0.8rem 1rem;
     cursor: pointer;
     transition: var(--transition-smooth);
     user-select: none;
-    gap: 1rem;
-    min-height: 4.5rem; /* Ensure standard balanced height for multi-line support */
+    gap: 0.8rem; /* Compact layout spacing */
+    min-height: 4.5rem; /* Balanced wrapper height */
 }
 
 [data-theme="light"] .option-switch {
@@ -1644,11 +1644,12 @@ footer {
     display: none;
 }
 
+/* Slimmed Switch Slider Track matched to font proportions */
 .switch-slider {
     position: relative;
     display: inline-block;
-    width: 2.8rem;
-    height: 1.5rem;
+    width: 2.2rem;
+    height: 1.15rem;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid var(--border-card);
     border-radius: 30px;
@@ -1660,12 +1661,12 @@ footer {
     background: rgba(0, 0, 0, 0.08);
 }
 
-/* Knob ball handle - Absolute center alignment inside track */
+/* Smalled knob center alignment */
 .switch-slider::before {
     content: "";
     position: absolute;
-    width: 1.1rem;
-    height: 1.1rem;
+    width: 0.85rem;
+    height: 0.85rem;
     left: 2px;
     top: 50%;
     transform: translateY(-50%);
@@ -1674,16 +1675,15 @@ footer {
     transition: var(--transition-smooth);
 }
 
-/* Checked track activation */
 .option-switch input[type="checkbox"]:checked + .switch-slider {
     background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
     border-color: transparent;
-    box-shadow: 0 0 10px rgba(var(--accent-cyan-rgb), 0.4);
+    box-shadow: 0 0 8px rgba(var(--accent-cyan-rgb), 0.35);
 }
 
-/* Inchecked knob shift (Keep Y translation constant to prevent jitter) */
+/* Compact scale displacement mapping */
 .option-switch input[type="checkbox"]:checked + .switch-slider::before {
-    transform: translate(1.3rem, -50%);
+    transform: translate(1.05rem, -50%);
     background: var(--text-inverse);
 }
 
