@@ -1609,48 +1609,90 @@ footer {
     background: rgba(255, 255, 255, 0.05);
 }
 
-/* Upgrades checkboxes */
+/* Luxury Switch Toggle Buttons */
 .upgrade-options-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem;
 }
 
-.option-checkbox {
+.option-switch {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    justify-content: space-between;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border-card);
-    border-radius: 8px;
-    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    padding: 0.9rem 1.2rem;
     cursor: pointer;
     transition: var(--transition-smooth);
     user-select: none;
+    gap: 1rem;
 }
 
-.option-checkbox:hover {
+[data-theme="light"] .option-switch {
+    background: rgba(0, 0, 0, 0.01);
+}
+
+.option-switch:hover {
     border-color: var(--accent-cyan);
     background: rgba(var(--accent-cyan-rgb), 0.03);
 }
 
-.option-checkbox input[type="checkbox"] {
-    accent-color: var(--accent-cyan);
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
+.option-switch input[type="checkbox"] {
+    display: none;
 }
 
-.option-checkbox span {
+.switch-slider {
+    position: relative;
+    display: inline-block;
+    width: 2.8rem;
+    height: 1.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-card);
+    border-radius: 30px;
+    transition: var(--transition-smooth);
+    flex-shrink: 0;
+    order: 2;
+}
+
+[data-theme="light"] .switch-slider {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.switch-slider::before {
+    content: "";
+    position: absolute;
+    width: 1.1rem;
+    height: 1.1rem;
+    left: 2px;
+    bottom: 2px;
+    background: #718096;
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+}
+
+.option-switch input[type="checkbox"]:checked + .switch-slider {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    border-color: transparent;
+    box-shadow: 0 0 10px rgba(var(--accent-cyan-rgb), 0.4);
+}
+
+.option-switch input[type="checkbox"]:checked + .switch-slider::before {
+    transform: translateX(1.3rem);
+    background: var(--text-inverse);
+}
+
+.switch-label {
     font-size: 0.88rem;
-    font-weight: 500;
+    font-weight: 600;
+    color: var(--text-main);
+    order: 1;
+    transition: var(--transition-smooth);
 }
 
-.submit-btn {
-    width: 100%;
-    margin-top: 1rem;
-    height: 3.2rem;
-    border-radius: 12px;
+.option-switch input[type="checkbox"]:checked ~ .switch-label {
+    color: var(--accent-cyan);
 }
 
 /* ==========================================
