@@ -188,7 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Server Specs Tab Filter Switcher (All / VM / Bare)
     // ==========================================
     const tabBtns = document.querySelectorAll('.tab-btn');
-    const serverCards = document.querySelectorAll('.server-card');
 
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -196,8 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.add('active');
             
             const targetTab = btn.getAttribute('data-tab'); // 'all', 'vm', 'bare'
+            const currentCards = document.querySelectorAll('.server-card');
             
-            serverCards.forEach(card => {
+            currentCards.forEach(card => {
                 const category = card.getAttribute('data-category');
                 if (targetTab === 'all' || category === targetTab) {
                     card.style.display = 'flex';
@@ -361,14 +361,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Attach Event Listeners to Server Cards deployment buttons
-    document.querySelectorAll('.server-card .server-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const card = btn.closest('.server-card');
-            openInquiryModal(card);
+    // Attach Event Listeners via Event Delegation on Server Grid container
+    const serverMainGrid = document.getElementById('server-main-grid');
+    if (serverMainGrid) {
+        serverMainGrid.addEventListener('click', (e) => {
+            const btn = e.target.closest('.server-btn');
+            if (btn) {
+                e.preventDefault();
+                const card = btn.closest('.server-card');
+                if (card) {
+                    openInquiryModal(card);
+                }
+            }
         });
-    });
+    }
 
     // Attach Event Listeners to Managed Services and Domains Cards
     document.querySelectorAll('#managed-services-grid .service-item-card, #domains-services-grid .domain-feature-card').forEach(card => {
@@ -536,4 +542,58 @@ ${message ? message : '없음'}`;
     
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll(); // Trigger once on load
+
+    // ==========================================
+    // 8. Dynamic Server Config Loading & Rendering (USDT Pricing)
+    // ==========================================
+    const loadServers = async () => {
+        try {
+            const response = await fetch('data/servers.json');
+            if (!response.ok) throw new Error('Failed to load server configurations.');
+            const servers = await response.json();
+            
+            const serverGrid = document.getElementById('server-main-grid');
+            if (!serverGrid) return;
+            
+            serverGrid.innerHTML = ''; // Clear fallback hardcoded HTML
+            
+            servers.forEach(server => {
+                const popularClass = server.popular ? 'popular' : '';
+                const recommendedBadge = server.popular ? `<div class="recommended-badge" data-i18n="srv_recommended">RECOMMENDED</div>` : '';
+                
+                const cardHtml = `
+                    <div class="server-card ${popularClass}" data-category="${server.category}" id="${server.id}">
+                        ${recommendedBadge}
+                        <div class="server-name" data-i18n="${server.title_i18n}"></div>
+                        <p class="server-desc" data-i18n="${server.desc_i18n}"></p>
+                        <div class="server-price">
+                            <span class="price-amount">${server.price}</span>
+                            <span class="price-currency"> USDT / mo</span>
+                        </div>
+                        <div class="server-specs">
+                            ${server.specs.map(spec => `
+                                <div class="spec-item">
+                                    <span class="spec-label">${spec.label}</span>
+                                    <span class="spec-val" data-i18n="${spec.val_i18n}"></span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="crypto-tag"><i class="fa-brands fa-bitcoin"></i> <span data-i18n="srv_crypto">Cryptocurrency accepted</span></div>
+                        <button class="btn ${server.popular ? 'btn-primary' : 'btn-secondary'} server-btn" id="${server.btn_id}">
+                            <i class="fa-solid fa-arrow-right"></i> <span data-i18n="srv_btn_deploy">Contact for Deploy</span>
+                        </button>
+                    </div>
+                `;
+                serverGrid.insertAdjacentHTML('beforeend', cardHtml);
+            });
+            
+            // Re-apply translations to dynamically populated DOM elements
+            applyTranslations(currentLang);
+            
+        } catch (err) {
+            console.error('Error fetching servers.json config:', err);
+        }
+    };
+
+    loadServers();
 });

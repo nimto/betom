@@ -1,0 +1,104 @@
+[
+  {
+    "id": "card-vm-standard",
+    "category": "vm",
+    "popular": true,
+    "title_i18n": "srv_vm_std_title",
+    "desc_i18n": "srv_vm_std_desc",
+    "price": 150,
+    "period_i18n": "srv_vm_std_period",
+    "specs": [
+      { "label": "CPU", "val_i18n": "srv_vm_std_cpu" },
+      { "label": "Memory", "val_i18n": "srv_vm_std_ram" },
+      { "label": "Storage", "val_i18n": "srv_vm_std_storage" },
+      { "label": "Operating System", "val_i18n": "srv_vm_std_os" },
+      { "label": "Storage Mirroring", "val_i18n": "srv_vm_std_mirror" }
+    ],
+    "btn_id": "btn-buy-vm"
+  },
+  {
+    "id": "card-desktop-remote",
+    "category": "vm",
+    "popular": false,
+    "title_i18n": "srv_desktop_title",
+    "desc_i18n": "srv_desktop_desc",
+    "price": 300,
+    "period_i18n": "srv_desktop_period",
+    "specs": [
+      { "label": "CPU", "val_i18n": "srv_desktop_cpu" },
+      { "label": "Memory", "val_i18n": "srv_desktop_ram" },
+      { "label": "Storage", "val_i18n": "srv_desktop_storage" },
+      { "label": "Operating System", "val_i18n": "srv_desktop_os" },
+      { "label": "Network Uplink", "val_i18n": "srv_desktop_mirror" }
+    ],
+    "btn_id": "btn-buy-desktop"
+  },
+  {
+    "id": "card-bare-gen6",
+    "category": "bare",
+    "popular": false,
+    "title_i18n": "srv_gen6_title",
+    "desc_i18n": "srv_gen6_desc",
+    "price": 480,
+    "period_i18n": "srv_desktop_period",
+    "specs": [
+      { "label": "CPU", "val_i18n": "srv_gen6_cpu" },
+      { "label": "Memory", "val_i18n": "srv_gen6_ram" },
+      { "label": "Storage", "val_i18n": "srv_gen6_storage" },
+      { "label": "Operating System", "val_i18n": "srv_common_os" },
+      { "label": "Secured Uplink", "val_i18n": "srv_common_sec" }
+    ],
+    "btn_id": "btn-buy-gen6"
+  },
+  {
+    "id": "card-bare-gen8",
+    "category": "bare",
+    "popular": false,
+    "title_i18n": "srv_gen8_title",
+    "desc_i18n": "srv_gen8_desc",
+    "price": 550,
+    "period_i18n": "srv_desktop_period",
+    "specs": [
+      { "label": "CPU", "val_i18n": "srv_gen8_cpu" },
+      { "label": "Memory", "val_i18n": "srv_gen8_ram" },
+      { "label": "Storage", "val_i18n": "srv_gen8_storage" },
+      { "label": "Operating System", "val_i18n": "srv_common_os" },
+      { "label": "Secured Uplink", "val_i18n": "srv_common_sec" }
+    ],
+    "btn_id": "btn-buy-gen8"
+  },
+  {
+    "id": "card-bare-gen9",
+    "category": "bare",
+    "popular": true,
+    "title_i18n": "srv_gen9_title",
+    "desc_i18n": "srv_gen9_desc",
+    "price": 630,
+    "period_i18n": "srv_desktop_period",
+    "specs": [
+      { "label": "CPU", "val_i18n": "srv_gen9_cpu" },
+      { "label": "Memory", "val_i18n": "srv_gen9_ram" },
+      { "label": "Storage", "val_i18n": "srv_gen9_storage" },
+      { "label": "Operating System", "val_i18n": "srv_common_os" },
+      { "label": "Secured Uplink", "val_i18n": "srv_common_sec" }
+    ],
+    "btn_id": "btn-buy-gen9"
+  },
+  {
+    "id": "card-bare-gen10",
+    "category": "bare",
+    "popular": false,
+    "title_i18n": "srv_gen10_title",
+    "desc_i18n": "srv_gen10_desc",
+    "price": 750,
+    "period_i18n": "srv_desktop_period",
+    "specs": [
+      { "label": "CPU", "val_i18n": "srv_gen10_cpu" },
+      { "label": "Memory", "val_i18n": "srv_gen10_ram" },
+      { "label": "Storage", "val_i18n": "srv_gen10_storage" },
+      { "label": "Operating System", "val_i18n": "srv_common_os" },
+      { "label": "Secured Uplink", "val_i18n": "srv_common_sec" }
+    ],
+    "btn_id": "btn-buy-gen10"
+  }
+]
