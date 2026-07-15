@@ -23,7 +23,7 @@ const translations = {
         about_feat3_desc: "Continuous monitoring, instant incident alert system, and rapid recovery assistance are active round the clock.",
         about_card_title: "Legacy Server Migration",
         about_card_desc: "Transition your high-cost legacy physical servers or unpredictable AWS instances to Betom IDC high-availability VMs.",
-        about_card_saving: "MAX 60%",
+        about_card_saving: "Up to<br class=\"mobile-only-br\"> 60% Saving",
         about_card_note: "Achieve dramatic cost savings with predictable, transparent flat-rate monthly hosting.",
         
         servers_subtitle: "INFRASTRUCTURE SPECS",
@@ -218,7 +218,7 @@ const translations = {
         about_feat3_desc: "일본 도쿄 현지에서 정밀 실시간 모니터링, 실시간 인시던트 감지 및 신속한 복구 지원을 항시 가동합니다.",
         about_card_title: "노후 서버 VM 전환",
         about_card_desc: "노후화된 고비용 물리 서버나 예측 불가능한 AWS 등의 퍼블릭 클라우드를 Betom IDC의 고가용성 VM으로 이전하십시오.",
-        about_card_saving: "최대 60% 절감",
+        about_card_saving: "최대<br class=\"mobile-only-br\"> 60% 절감",
         about_card_note: "인프라 비용의 획기적인 최적화 및 예측 가능한 고정 월 비용 솔루션을 제공합니다.",
         
         servers_subtitle: "INFRASTRUCTURE SPECS",
@@ -413,7 +413,7 @@ const translations = {
         about_feat3_desc: "東京の現場で経験豊富なエンジニアが常時監視し、障害の予防および発生時の迅速な対応をお約束します。",
         about_card_title: "古いサーバーからVMへの移行",
         about_card_desc: "高コストな老朽化サーバーや、予想困難なAWSなどのクラウドコストを、高可用性のBetom VMへと移行して最適化します。",
-        about_card_saving: "最大60%のコスト削減",
+        about_card_saving: "最大<br class=\"mobile-only-br\"> 60%削減",
         about_card_note: "定額かつ透明性の高い月額固定費用で、インフラ費用を劇的に削減します。",
         
         servers_subtitle: "INFRASTRUCTURE SPECS",
@@ -608,7 +608,7 @@ const translations = {
         about_feat3_desc: "東京數據中心提供 24/7 監控、即時警報與快速障礙排除，全力保障您的業務穩定。",
         about_card_title: "舊伺服器轉 VM 託管",
         about_card_desc: "將高成本的舊實體伺服器，或難以預估花費的 AWS 等公有雲服務，無縫遷移至 Betom 高可用性虛擬主機。",
-        about_card_saving: "最高節省 60% 成本",
+        about_card_saving: "最高節省<br class=\"mobile-only-br\"> 60% 成本",
         about_card_note: "透明、可預測的固定月租費率，大幅度為您優化基礎設施支出。",
         
         servers_subtitle: "INFRASTRUCTURE SPECS",
@@ -772,7 +772,7 @@ const translations = {
         about_feat3_desc: "东京数据中心提供 24/7 监控、即时警报与快速故障排除，全力保障您的业务稳定。",
         about_card_title: "旧服务器转 VM 托管",
         about_card_desc: "将高成本的旧实体服务器，或难以预估花费的 AWS 等公有云服务，无缝迁移至 Betom 高可用性虚拟主机。",
-        about_card_saving: "最高节省 60% 成本",
+        about_card_saving: "最高节省<br class=\"mobile-only-br\"> 60% 成本",
         about_card_note: "透明、可预测的固定月租费率，大幅度为您优化基础设施支出。",
         
         servers_subtitle: "INFRASTRUCTURE SPECS",

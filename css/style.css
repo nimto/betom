@@ -712,10 +712,16 @@ header .container {
 
 .about-card-stat {
     font-family: var(--font-heading);
-    font-size: 3.5rem;
+    font-size: 2.2rem;
     font-weight: 800;
     color: var(--accent-cyan);
     margin: 1.5rem 0;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.about-card-stat .mobile-only-br {
+    display: none;
 }
 
 /* ==========================================
@@ -2066,7 +2072,15 @@ footer {
     }
     
     .about-card-stat {
-        font-size: 2.8rem;
+        font-size: 2.3rem !important;
+        white-space: normal !important;
+        text-align: center !important;
+        line-height: 1.4 !important;
+        margin: 1.2rem 0 !important;
+    }
+    
+    .about-card-stat .mobile-only-br {
+        display: block !important;
     }
     
     .price-amount {
