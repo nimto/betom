@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Set direct consult message helper
         const msgField = document.getElementById('inquiry-message');
         if (msgField) {
-            msgField.value = currentLang === 'ko' ? `[${title}] 기술에 대해 초보자용 세부 가이드 및 맞춤형 견적 상담을 요청하옵니다.` : 
+            msgField.value = currentLang === 'ko' ? `[${title}] 기술에 관해 상세 가이드 및 도입 견적 상담을 신청합니다.` : 
                            (currentLang === 'ja' ? `[${title}] 技術について、初心者向けガイドおよび見積もり相談を希望します。` : 
                            `I would like to request consulting and custom pricing details regarding [${titleEn}].`);
         }

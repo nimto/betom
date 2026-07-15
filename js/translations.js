@@ -202,13 +202,13 @@ const translations = {
         
         hero_badge: "일본 도쿄 24/7 엔지니어 대기 중",
         hero_title: "일본 도쿄 기반의 <br><span>저지연·고보안 프리미엄 인프라</span>",
-        hero_desc: "Betom IDC는 최첨단 인프라와 일본 현지 전문 엔지니어링 리소스를 결합하여, 비즈니스에 최상의 성능과 중단 없는 서비스 연속성을 보장하옵니다.",
+        hero_desc: "Betom IDC는 최첨단 인프라와 일본 현지 전문 엔지니어링 리소스를 결합하여, 비즈니스에 최상의 성능과 중단 없는 서비스 연속성을 보장합니다.",
         hero_cta_servers: "서버 사양 보기",
         hero_cta_telegram: "텔레그램 문의",
         
         about_subtitle: "ABOUT BETOM IDC",
         about_title: "일본 도쿄 현지 핵심 데이터 센터 서비스",
-        about_desc: "Betom IDC는 일본 도쿄 현지에 설립되어, 저지연(Low Latency)과 고보안(High Security)을 최우선 가치로 삼고 있사옵니다. 까다로운 비즈니스 요구사항을 충족하기 위하여 최첨단 베어메탈(Bare Metal) 서버와 고성능 클라우드 아키텍처를 결합한 호스팅 및 정밀 관리형 서비스를 제공하옵니다.",
+        about_desc: "Betom IDC는 일본 도쿄 현지에 설립되어, 저지연(Low Latency)과 고보안(High Security)을 최우선 가치로 삼고 있습니다. 까다로운 비즈니스 요구사항을 충족하기 위하여 최첨단 베어메탈(Bare Metal) 서버와 고성능 클라우드 아키텍처를 결합한 호스팅 및 정밀 관리형 서비스를 제공합니다.",
         about_feat1_title: "초저지연 일본 현지 망 연동",
         about_feat1_desc: "Softbank, KDDI, Equinix 등 대형 백본 라인 기가 네트워크 연동을 통해 안정적이고 빠른 로컬 인프라 속도를 보장합니다.",
         about_feat2_title: "Cloudflare Magic Transit DDoS 방어",
@@ -218,7 +218,7 @@ const translations = {
         about_card_title: "노후 서버 VM 전환",
         about_card_desc: "노후화된 고비용 물리 서버나 예측 불가능한 AWS 등의 퍼블릭 클라우드를 Betom IDC의 고가용성 VM으로 이전하십시오.",
         about_card_saving: "최대 60% 절감",
-        about_card_note: "인프라 비용의 획기적인 최적화 및 예측 가능한 고정 월 비용 솔루션을 선사하옵니다.",
+        about_card_note: "인프라 비용의 획기적인 최적화 및 예측 가능한 고정 월 비용 솔루션을 제공합니다.",
         
         servers_subtitle: "INFRASTRUCTURE SPECS",
         servers_title: "고성능 데이터 센터 서버 라인업",
@@ -286,7 +286,7 @@ const translations = {
         
         sec_subtitle: "ADVANCED NETWORK & SECURITY",
         sec_title: "Cloudflare Magic Transit 상시 작동",
-        sec_desc: "최첨단 글로벌 엣지 인프라와의 파트너십을 통해 수백 Tbps 용량의 패킷 필터링 인프라가 실시간으로 DDoS 유입 트래픽을 상시 스크러빙 및 완화하옵니다. 비즈니스를 위해 지연 시간 제로에 가까운 청정 패킷만을 라우팅하여 L3/L4/L7 레이어의 복합 위협으로부터 데이터 센터 인프라를 수호하옵니다.",
+        sec_desc: "최첨단 글로벌 엣지 인프라와의 파트너십을 통해 수백 Tbps 용량의 패킷 필터링 인프라가 실시간으로 DDoS 유입 트래픽을 상시 스크러빙 및 완화합니다. 비즈니스를 위해 지연 시간 제로에 가까운 청정 패킷만을 라우팅하여 L3/L4/L7 레이어의 복합 위협으로부터 데이터 센터 인프라를 보호합니다.",
         sec_feat1_title: "Cloudflare Magic Transit 운영 대행",
         sec_feat1_desc: "복잡한 설정 필요 없이 온프레미스, 퍼블릭 클라우드, 하이브리드 인프라 전반에 상시 DDoS 방어 체계를 이식해 드립니다.",
         sec_feat2_title: "L2/L3 스위치 및 물리 방화벽 전담 관리",
@@ -328,13 +328,13 @@ const translations = {
         part_title: "함께 비즈니스를 개척하는 기술 파트너십",
         
         ct_title: "프리미엄 인프라 컨설팅을 시작해보십시오",
-        ct_desc: "Betom IDC의 전문 솔루션 아키텍트가 전하의 비즈니스 요구사양에 최적화된 맞춤형 서버 아키텍처 및 네트워크 디도스 방어 설계를 직접 무상 상담해 드리옵니다.",
+        ct_desc: "Betom IDC의 전문 솔루션 아키텍트가 귀사의 비즈니스 요구사양에 최적화된 맞춤형 서버 아키텍처 및 네트워크 디도스 방어 설계를 직접 무상 상담해 드립니다.",
         ct_lbl_tg: "텔레그램 고객지원",
         ct_lbl_mail: "대표 E-Mail",
         ct_lbl_tel: "일본 현지 직통번호",
         ct_btn: "텔레그램으로 즉시 상담 요청하기",
         
-        f_desc: "일본 도쿄에 거점을 두고 전세계 고객사들을 향한 저지연, 고보안 클라우드 VM 및 베어메탈 서버를 제공하는 인프라 파트너십 허브이옵니다.",
+        f_desc: "일본 도쿄에 거점을 두고 전세계 고객사들을 향한 저지연, 고보안 클라우드 VM 및 베어메탈 서버를 제공하는 인프라 파트너십 허브입니다.",
         f_quick: "빠른 이동",
         f_core: "핵심 서비스 바로가기",
         f_copy: "&copy; 2026 Betom IDC Japan. All rights reserved. (도쿄 현지 24/7/365 인프라 관제 가동 중)",
