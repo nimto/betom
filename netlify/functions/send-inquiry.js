@@ -2,7 +2,8 @@ exports.handler = async (event, context) => {
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS'
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Content-Type': 'application/json; charset=utf-8'
     };
 
     // Handle CORS preflight options request
@@ -30,7 +31,7 @@ exports.handler = async (event, context) => {
         // Using Node 18+ global fetch API
         const response = await fetch(botUrl, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json; charset=utf-8' },
             body: JSON.stringify({
                 chat_id: chatId,
                 text: message

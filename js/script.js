@@ -343,7 +343,7 @@ ${message ? message : '없음'}`;
         try {
             const response = await fetch('/api/send-inquiry', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json; charset=utf-8' },
                 body: JSON.stringify({ message: messageText })
             });
 
