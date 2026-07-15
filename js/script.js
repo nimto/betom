@@ -226,12 +226,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const openInquiryModal = (card) => {
         // Collect server details
-        const serverName = card.querySelector('.server-name').innerText;
-        const serverPriceAmount = card.querySelector('.price-amount').innerText;
-        const serverPricePeriod = card.querySelector('.price-currency').innerText;
+        const serverNameEl = card.querySelector('.server-name');
+        const serverNameKey = serverNameEl ? serverNameEl.getAttribute('data-i18n') : null;
+        const serverNameEn = (serverNameKey && translations['en'][serverNameKey]) ? translations['en'][serverNameKey] : (serverNameEl ? serverNameEl.innerText : 'Unknown Server');
+        const serverName = serverNameEl ? serverNameEl.innerText : 'Unknown Server';
+        
+        const serverPriceAmount = card.querySelector('.price-amount') ? card.querySelector('.price-amount').innerText : 'Custom Estimate';
+        const serverPricePeriod = card.querySelector('.price-currency') ? card.querySelector('.price-currency').innerText : '';
         
         currentSelectedServer = {
             name: serverName,
+            nameEn: serverNameEn,
             price: `${serverPriceAmount}${serverPricePeriod}`,
             specs: []
         };
@@ -241,9 +246,20 @@ document.addEventListener('DOMContentLoaded', () => {
         modalSpecsSummary.innerHTML = ''; // Reset specs box
         
         specItems.forEach(item => {
-            const label = item.querySelector('.spec-label').innerText;
-            const val = item.querySelector('.spec-val').innerText;
-            currentSelectedServer.specs.push({ label, val });
+            const labelEl = item.querySelector('.spec-label');
+            const valEl = item.querySelector('.spec-val');
+            
+            const labelKey = labelEl ? labelEl.getAttribute('data-i18n') : null;
+            const valKey = valEl ? valEl.getAttribute('data-i18n') : null;
+            
+            // Map raw English dictionary values for Telegram telemetry report
+            const labelEn = (labelKey && translations['en'][labelKey]) ? translations['en'][labelKey] : (labelEl ? labelEl.innerText : '');
+            const valEn = (valKey && translations['en'][valKey]) ? translations['en'][valKey] : (valEl ? valEl.innerText : '');
+            
+            const label = labelEl ? labelEl.innerText : '';
+            const val = valEl ? valEl.innerText : '';
+            
+            currentSelectedServer.specs.push({ label, val, labelEn, valEn });
 
             // Render spec badge inside modal
             const specBadge = document.createElement('div');
@@ -318,12 +334,12 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedUpgrades.push(cb.value);
         });
 
-        // Formulate Markdown-like Telegram Message body
-        const specDetails = currentSelectedServer.specs.map(s => `• ${s.label}: ${s.val}`).join('\n');
+        // Formulate Markdown-like Telegram Message body using forced English values for specs & server names
+        const specDetails = currentSelectedServer.specs.map(s => `• ${s.labelEn}: ${s.valEn}`).join('\n');
         
         const messageText = `🔔 [Betom IDC 신규 구축 문의]
 
-💻 신청 서버: ${currentSelectedServer.name}
+💻 신청 서버: ${currentSelectedServer.nameEn}
 💰 월간 요금: ${currentSelectedServer.price}
 
 ⚙️ 기본 사양 정보:
