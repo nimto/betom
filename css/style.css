@@ -2023,3 +2023,43 @@ footer {
     color: #0b0f19 !important;
 }
 
+/* ==========================================
+   18. Interactive Service Cards & Info Modal Layout
+   ========================================== */
+.service-item-card, .domain-feature-card {
+    cursor: pointer !important;
+    user-select: none;
+    transition: var(--transition-smooth);
+}
+
+.service-item-card:hover {
+    transform: translateY(-8px) scale(1.02) !important;
+    border-color: var(--accent-purple) !important;
+}
+
+.domain-feature-card:hover {
+    transform: translateY(-8px) scale(1.02) !important;
+    border-color: var(--accent-cyan) !important;
+}
+
+.modal-specs-summary.info-text-mode {
+    grid-template-columns: 1fr !important;
+    background: rgba(var(--accent-cyan-rgb), 0.03) !important;
+    border: 1px dashed rgba(var(--accent-cyan-rgb), 0.3) !important;
+    padding: 1.5rem !important;
+}
+
+.modal-beginner-guide-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-main);
+    text-align: left;
+    white-space: normal;
+    word-break: keep-all;
+}
+
+.modal-beginner-guide-text::before {
+    content: "💡 ";
+}
+
+

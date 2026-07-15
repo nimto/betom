@@ -277,10 +277,85 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = 'hidden';
     };
 
+    const openServiceInquiryModal = (cardId, fallbackTitle) => {
+        // Service to Translation Key mapping
+        const serviceGuideKeys = {
+            'card-feature-proxmox': 'guide_proxmox',
+            'card-feature-raid': 'guide_raid',
+            'card-feature-lb': 'guide_lb',
+            'card-feature-dr': 'guide_dr',
+            'card-feature-ids': 'guide_ids',
+            'card-feature-audit': 'guide_audit',
+            'card-domain-reg': 'guide_domreg',
+            'card-domain-dns': 'guide_domdns',
+            'card-domain-whois': 'guide_domwhois',
+            'card-domain-lock': 'guide_domlock'
+        };
+
+        const keyPrefix = serviceGuideKeys[cardId];
+        const dict = translations[currentLang] || translations['en'];
+        const dictEn = translations['en'];
+        
+        const title = (keyPrefix && dict[`${keyPrefix}_title`]) ? dict[`${keyPrefix}_title`] : fallbackTitle;
+        const titleEn = (keyPrefix && dictEn[`${keyPrefix}_title`]) ? dictEn[`${keyPrefix}_title`] : fallbackTitle;
+        const desc = (keyPrefix && dict[`${keyPrefix}_desc`]) ? dict[`${keyPrefix}_desc`] : '';
+        const descEn = (keyPrefix && dictEn[`${keyPrefix}_desc`]) ? dictEn[`${keyPrefix}_desc`] : '';
+
+        currentSelectedServer = {
+            name: title,
+            nameEn: titleEn,
+            price: currentLang === 'ko' ? '맞춤 솔루션 상담' : (currentLang === 'ja' ? '個別相談' : 'Custom Consulting'),
+            specs: [],
+            isServiceMode: true,
+            serviceDescEn: descEn
+        };
+
+        // Render Beginner Guide Text instead of Spec Badges
+        modalSpecsSummary.innerHTML = `<div class="modal-beginner-guide-text">${desc}</div>`;
+        modalSpecsSummary.classList.add('info-text-mode');
+
+        // Set Title & Price
+        modalServerName.innerText = title;
+        modalServerPrice.innerText = currentSelectedServer.price;
+
+        // Hide Hardware upgrade options form-group
+        const upgradeFormGroup = document.querySelector('.upgrade-options-grid').closest('.form-group');
+        if (upgradeFormGroup) {
+            upgradeFormGroup.style.display = 'none';
+        }
+
+        // Set direct consult message helper
+        const msgField = document.getElementById('inquiry-message');
+        if (msgField) {
+            msgField.value = currentLang === 'ko' ? `[${title}] 기술에 대해 초보자용 세부 가이드 및 맞춤형 견적 상담을 요청하옵니다.` : 
+                           (currentLang === 'ja' ? `[${title}] 技術について、初心者向けガイドおよび見積もり相談を希望します。` : 
+                           `I would like to request consulting and custom pricing details regarding [${titleEn}].`);
+        }
+
+        // Open Modal
+        inquiryModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
     const closeInquiryModal = () => {
         inquiryModal.classList.remove('active');
         document.body.style.overflow = '';
         formInquiry.reset();
+        
+        // Restore specs box layout
+        modalSpecsSummary.classList.remove('info-text-mode');
+        
+        // Restore Hardware options form-group visibility
+        const upgradeFormGroup = document.querySelector('.upgrade-options-grid').closest('.form-group');
+        if (upgradeFormGroup) {
+            upgradeFormGroup.style.display = '';
+        }
+        
+        // Clear message field values
+        const msgField = document.getElementById('inquiry-message');
+        if (msgField) {
+            msgField.value = '';
+        }
     };
 
     // Attach Event Listeners to Server Cards deployment buttons
@@ -289,6 +364,16 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const card = btn.closest('.server-card');
             openInquiryModal(card);
+        });
+    });
+
+    // Attach Event Listeners to Managed Services and Domains Cards
+    document.querySelectorAll('#managed-services-grid .service-item-card, #domains-services-grid .domain-feature-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            e.preventDefault();
+            const cardId = card.getAttribute('id');
+            const cardTitle = card.querySelector('h3').innerText;
+            openServiceInquiryModal(cardId, cardTitle);
         });
     });
 
@@ -334,10 +419,25 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedUpgrades.push(cb.value);
         });
 
-        // Formulate Markdown-like Telegram Message body using forced English values for specs & server names
-        const specDetails = currentSelectedServer.specs.map(s => `• ${s.labelEn}: ${s.valEn}`).join('\n');
-        
-        const messageText = `🔔 [Betom IDC 신규 구축 문의]
+        let messageText = '';
+        if (currentSelectedServer.isServiceMode) {
+            messageText = `🔔 [Betom IDC 신규 서비스 문의]
+
+💻 신청 서비스: ${currentSelectedServer.nameEn}
+💰 예상 비용: ${currentSelectedServer.price}
+
+⚙️ 초보자용 가이드 정보 (Guide Details):
+• ${currentSelectedServer.serviceDescEn}
+
+👤 고객 연락처: ${contact}
+
+💬 추가 요청 사항:
+${message ? message : '없음'}`;
+        } else {
+            // Formulate Markdown-like Telegram Message body using forced English values for specs & server names
+            const specDetails = currentSelectedServer.specs.map(s => `• ${s.labelEn}: ${s.valEn}`).join('\n');
+            
+            messageText = `🔔 [Betom IDC 신규 구축 문의]
 
 💻 신청 서버: ${currentSelectedServer.nameEn}
 💰 월간 요금: ${currentSelectedServer.price}
@@ -352,6 +452,7 @@ ${selectedUpgrades.length > 0 ? selectedUpgrades.join(', ') : '선택 없음'}
 
 💬 추가 요청 사항:
 ${message ? message : '없음'}`;
+        }
 
         const dict = translations[currentLang] || translations['en'];
 

@@ -160,7 +160,38 @@ const translations = {
         modal_lbl_msg: "Additional Requests / Workloads",
         modal_btn_submit: "Submit Inquiry",
         modal_success: "Inquiry successfully sent! We will contact you shortly.",
-        modal_error: "Failed to send message via Telegram. Redirecting to direct chat..."
+        modal_error: "Failed to send message via Telegram. Redirecting to direct chat...",
+        
+        // Beginner-friendly Details for Managed Services & Domains
+        guide_proxmox_title: "Proxmox HA Ceph Cluster Consulting",
+        guide_proxmox_desc: "Simply put, it ensures your website never goes down by instantly migrating work to another server if one fails (HA), and duplicates your precious data across 3 separate disks (Ceph) to prevent any data loss.",
+        
+        guide_raid_title: "RAID 1 Mirroring Consulting",
+        guide_raid_desc: "A setup that writes the exact same data to two disks simultaneously. If one drive fails, the other takes over immediately with zero downtime or data loss.",
+        
+        guide_lb_title: "Load Balancer Administration Consulting",
+        guide_lb_desc: "Acts like a traffic controller when massive visitors hit your site. Distributes web traffic evenly across multiple backend servers to prevent overload and crashes.",
+        
+        guide_dr_title: "Disaster Recovery (BCP / DR) Consulting",
+        guide_dr_desc: "An emergency escape system for your data. Automatically duplicates server snapshots to physically separated offsite storage locations for instant recovery in disaster scenarios.",
+        
+        guide_ids_title: "Intrusion Detection & Prevention Consulting",
+        guide_ids_desc: "An intelligent security guard at your server doorway. Detects and blocks malicious hacking payloads and zero-day threats in real-time before they reach your databases.",
+        
+        guide_audit_title: "Security Audit & Compliance Consulting",
+        guide_audit_desc: "A regular comprehensive health check for your server. Includes mock hacking tests, system patch administration, and automatic SSL certificate renewals to lock down any loopholes.",
+        
+        guide_domreg_title: "Secure Domain Registration & Transfer",
+        guide_domreg_desc: "Register your secure business address (.cloud, .com) or safely transfer existing domains to our high-security management platform with step-by-step assistance.",
+        
+        guide_domdns_title: "Anycast DNS Record Control Consulting",
+        guide_domdns_desc: "A global smart map that routes users to the nearest geographical DNS node for 0.001-second instant domain resolution, drastically reducing page load speeds worldwide.",
+        
+        guide_domwhois_title: "Whois Privacy Protection Consulting",
+        guide_domwhois_desc: "A shield that masks your private registration details (phone, email) on public WHOIS databases to eliminate advertising spam, target phishing, and privacy leaks.",
+        
+        guide_domlock_title: "Transfer Theft Prevention Consulting",
+        guide_domlock_desc: "A registrar-level high security vault lock that blocks unauthorized domain hijacking, transfers, or rogue DNS modification attempts."
     },
     ko: {
         nav_about: "회사소개",
@@ -323,7 +354,38 @@ const translations = {
         modal_lbl_msg: "추가 요청 사항 / 작업 부하(Workloads)",
         modal_btn_submit: "구축 문의 전송하기",
         modal_success: "구축 문의가 텔레그램으로 성공적으로 전송되었습니다! 곧 연락드리겠습니다.",
-        modal_error: "텔레그램 전송에 실패하였습니다. 상담 채널로 직접 연동합니다."
+        modal_error: "텔레그램 전송에 실패하였습니다. 상담 채널로 직접 연동합니다.",
+        
+        // Beginner-friendly Details for Managed Services & Domains (Korean)
+        guide_proxmox_title: "Proxmox HA Ceph 클러스터 컨설팅 문의",
+        guide_proxmox_desc: "쉽게 말해, 서버가 갑자기 꺼져도 다른 서버가 즉시 업무를 이어받아 사이트가 멈추지 않게 하고(HA), 소중한 데이터를 3군데의 하드디스크에 동시에 분산 복사하여 절대 지워지지 않게 지켜주는 최첨단 가상화 기술입니다.",
+        
+        guide_raid_title: "RAID 1 스토리지 미러링 컨설팅 문의",
+        guide_raid_desc: "데이터가 저장될 때 두 개의 하드디스크에 똑같이 실시간 쌍둥이 복사본을 만들어 두는 기술입니다. 하나의 디스크가 불에 타거나 수명을 다해 망가지더라도, 즉시 남은 다른 디스크로 1초의 끊김도 없이 정상 작동합니다.",
+        
+        guide_lb_title: "로드 밸런서 운영 및 관리 컨설팅 문의",
+        guide_lb_desc: "수많은 손님이 동시에 매장에 몰렸을 때, 여러 개의 안내 창구로 교통정리를 해주는 지휘자 역할입니다. 방문자가 폭주하더라도 여러 대의 서버에 골고루 트래픽을 분산시켜 서버가 터지는 현상을 완벽히 방어합니다.",
+        
+        guide_dr_title: "재해 복구 (BCP / DR) 컨설팅 문의",
+        guide_dr_desc: "화재, 지진 또는 치명적인 랜섬웨어 공격으로 서버가 통째로 날아갔을 때를 대비한 '우주선 비상 탈출 장치'입니다. 먼 거리의 안전한 외부 데이터 저장소에 실시간 백업 및 원클릭 복구 시스템을 구성합니다.",
+        
+        guide_ids_title: "침입 탐지 및 방지 (IDS / IPS) 컨설팅 문의",
+        guide_ids_desc: "서버 입구에서 24시간 감시하는 최첨단 AI 인공지능 보안 요원입니다. 해커들의 최신 해킹 수법과 바이러스 패킷 패턴을 인공지능이 실시간 감지하여, 나쁜 위협을 들어오기 전에 즉각 체포하고 격리합니다.",
+        
+        guide_audit_title: "보안 감사 및 컴플라이언스 컨설팅 문의",
+        guide_audit_desc: "우리 시스템에 빈틈이나 녹슨 자물쇠가 없는지 정기적으로 점검하는 종합 건강검진 서비스입니다. 모의 해킹 테스트, 최신 OS 보안 패치 수동 적용, 그리고 암호화 보안 인증서(SSL) 갱신까지 원스톱으로 관리합니다.",
+        
+        guide_domreg_title: "도메인 안전 등록 및 이전 컨설팅 문의",
+        guide_domreg_desc: "인터넷상의 내 비즈니스 주소인 도메인(.cloud, .com 등)을 안전하게 소유하고 관리하는 서비스입니다. 복잡한 소유권 이전 및 타사 도메인을 서류 유실 걱정 없이 안전하고 빠르게 당사로 가져올 수 있습니다.",
+        
+        guide_domdns_title: "Anycast DNS 레코드 제어 컨설팅 문의",
+        guide_domdns_desc: "사용자가 내 홈페이지 주소를 칠 때, 전 세계에서 가장 가까운 서버가 0.001초 만에 응답하여 사이트가 즉시 켜지도록 안내하는 스마트 지도 서비스입니다. 해외 접속 속도가 비약적으로 빨라집니다.",
+        
+        guide_domwhois_title: "Whois 개인정보 보호 컨설팅 문의",
+        guide_domwhois_desc: "도메인을 등록할 때 의무적으로 공개되는 내 이름, 이메일, 전화번호 등의 개인 정보를 보이지 않게 마스킹 처리하는 보호막입니다. 스팸 광고 전화, 메일 폭탄, 해커들의 타겟 마케팅을 완벽하게 차단합니다.",
+        
+        guide_domlock_title: "도메인 탈취 방지 락 컨설팅 문의",
+        guide_domlock_desc: "내 소유의 도메인을 다른 사람이 몰래 훔쳐 가거나 주소를 다른 곳으로 훔쳐 돌리지(하이재킹) 못하도록 대행사 수준에서 강력하게 락(Lock)을 걸어두는 이중 금고 잠금장치입니다."
     },
     ja: {
         nav_about: "会社紹介",
