@@ -827,16 +827,59 @@ header .container {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-    color: #05070f;
+    width: auto;
+    height: 1.55rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px;
+    border-radius: 50px;
+    z-index: 2;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 242, 254, 0.25);
+    background: transparent;
     font-family: var(--font-heading);
     font-weight: 750;
     font-size: 0.62rem;
-    padding: 0.25rem 0.65rem;
-    border-radius: 50px;
+    color: #00f2fe !important;
+    text-shadow: 0 0 4px rgba(0, 242, 254, 0.3);
     letter-spacing: 0.05em;
-    box-shadow: 0 4px 10px rgba(0, 242, 254, 0.25);
-    z-index: 2;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.recommended-badge::before {
+    content: '';
+    position: absolute;
+    z-index: -2;
+    left: -50%;
+    top: -50%;
+    width: 200%;
+    height: 200%;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 50% 50%, 50% 50%;
+    background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+    background-image: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    animation: rotateBorderLight 4s linear infinite;
+}
+
+.recommended-badge::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 1px;
+    top: 1px;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    background: #0d1121;
+    border-radius: 49px;
+}
+
+@keyframes rotateBorderLight {
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .server-name {
@@ -2179,72 +2222,6 @@ footer {
 
 .modal-beginner-guide-text::before {
     content: "💡 ";
-}
-
-/* Recommended popular server button border rotating light animation */
-.btn-primary.server-btn {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    background: transparent !important;
-    border: none !important;
-    padding: 1px !important; /* border thickness simulation */
-    border-radius: 50px !important;
-    box-shadow: 0 4px 20px rgba(0, 242, 254, 0.25) !important;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.btn-primary.server-btn::before {
-    content: '';
-    position: absolute;
-    z-index: -2;
-    left: -50%;
-    top: -50%;
-    width: 200%;
-    height: 200%;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-size: 50% 50%, 50% 50%;
-    background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-    background-image: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-    animation: rotateBorderLight 4s linear infinite;
-}
-
-.btn-primary.server-btn::after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    left: 2px;
-    top: 2px;
-    width: calc(100% - 4px);
-    height: calc(100% - 4px);
-    background: linear-gradient(135deg, #090e1f 0%, #150d2a 100%);
-    border-radius: 48px;
-    transition: background 0.3s;
-}
-
-.btn-primary.server-btn:hover {
-    transform: translateY(-3px) !important;
-    box-shadow: 0 8px 30px rgba(0, 242, 254, 0.45) !important;
-}
-
-.btn-primary.server-btn:hover::after {
-    background: linear-gradient(135deg, #111a38 0%, #231644 100%);
-}
-
-.btn-primary.server-btn span,
-.btn-primary.server-btn i {
-    z-index: 2;
-    color: #ffffff !important;
-}
-
-@keyframes rotateBorderLight {
-    100% {
-        transform: rotate(360deg);
-    }
 }
 
 
