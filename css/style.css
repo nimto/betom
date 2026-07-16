@@ -820,18 +820,23 @@ header .container {
 }
 
 .server-card.popular::after {
-    content: 'RECOMMENDED';
+    display: none;
+}
+
+.recommended-badge {
     position: absolute;
-    top: 20px;
-    right: -30px;
+    top: 1.25rem;
+    right: 1.25rem;
     background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-    color: var(--text-inverse);
+    color: #05070f;
     font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 0.7rem;
-    padding: 0.3rem 2.5rem;
-    transform: rotate(45deg);
-    letter-spacing: 1px;
+    font-weight: 750;
+    font-size: 0.65rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 50px;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 12px rgba(0, 242, 254, 0.2);
+    z-index: 2;
 }
 
 .server-name {
