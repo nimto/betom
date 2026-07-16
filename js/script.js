@@ -253,6 +253,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const specItems = card.querySelectorAll('.server-specs .spec-item');
         modalSpecsSummary.innerHTML = ''; // Reset specs box
         
+        const table = document.createElement('table');
+        table.className = 'modal-specs-table';
+        const tbody = document.createElement('tbody');
+        
         specItems.forEach(item => {
             const labelEl = item.querySelector('.spec-label');
             const valEl = item.querySelector('.spec-val');
@@ -269,12 +273,17 @@ document.addEventListener('DOMContentLoaded', () => {
             
             currentSelectedServer.specs.push({ label, val, labelEn, valEn });
 
-            // Render spec badge inside modal
-            const specBadge = document.createElement('div');
-            specBadge.className = 'modal-spec-badge';
-            specBadge.innerHTML = `${label}: <strong>${val}</strong>`;
-            modalSpecsSummary.appendChild(specBadge);
+            // Create Table Row for aligned spec display
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="td-label">${label}</td>
+                <td class="td-val">${val}</td>
+            `;
+            tbody.appendChild(tr);
         });
+        
+        table.appendChild(tbody);
+        modalSpecsSummary.appendChild(table);
 
         // Set Title & Price
         modalServerName.innerText = serverName;
