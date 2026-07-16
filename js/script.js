@@ -505,15 +505,29 @@ ${message ? message : '없음'}`;
             const resData = await response.json();
             
             if (response.ok && resData.success) {
-                // Success SweetAlert2 Notification
+                // Compile short inquiry summary for success message
+                const successMsg = dict.modal_success || "Inquiry successfully sent!";
+                const summaryLabel = currentLang === 'ko' ? '신청 내역' : (currentLang === 'ja' ? '申請内容' : 'Inquiry Detail');
+                const summaryText = `[${summaryLabel}: ${currentSelectedServer.name} (${currentSelectedServer.price})]`;
+                
+                const successHtml = `
+                    <p style="margin-bottom: 1.2rem; line-height: 1.5;">${successMsg}</p>
+                    <div style="font-size: 0.92rem; font-family: var(--font-heading); color: #00f2fe; background: rgba(0,242,254,0.05); padding: 0.8rem 1.2rem; border-radius: 8px; border: 1px solid rgba(0,242,254,0.15); display: inline-block; word-break: break-all;">
+                        ${summaryText}
+                    </div>
+                `;
+
+                // Success SweetAlert2 Notification (Forced button click)
                 Swal.fire({
                     title: currentLang === 'ko' ? '전송 완료' : (currentLang === 'ja' ? '送信完了' : (currentLang === 'zh_tw' ? '傳送成功' : (currentLang === 'zh_cn' ? '发送成功' : 'Success!'))),
-                    text: dict.modal_success || "Inquiry successfully sent!",
+                    html: successHtml,
                     icon: 'success',
                     background: isDark ? '#0c0f1d' : '#ffffff',
                     color: isDark ? '#f3f4f6' : '#0f172a',
                     confirmButtonColor: '#00f2fe',
                     confirmButtonText: confirmBtnLabel,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
                     customClass: {
                         popup: 'betom-swal2-popup'
                     }
@@ -527,15 +541,28 @@ ${message ? message : '없음'}`;
             console.error("Network error sending message through serverless API:", err);
         }
 
-        // Fallback: Redirect to direct t.me link with prepopulated message text
+        // Fallback SweetAlert2 Notification (Forced button click)
+        const fallbackMsg = dict.modal_error || "Sending via Telegram bot failed. Redirecting to direct support chat...";
+        const fallbackSummaryLabel = currentLang === 'ko' ? '신청 내역' : (currentLang === 'ja' ? '申請内容' : 'Inquiry Detail');
+        const fallbackSummaryText = `[${fallbackSummaryLabel}: ${currentSelectedServer.name} (${currentSelectedServer.price})]`;
+        
+        const fallbackHtml = `
+            <p style="margin-bottom: 1.2rem; line-height: 1.5;">${fallbackMsg}</p>
+            <div style="font-size: 0.92rem; font-family: var(--font-heading); color: #ff5e62; background: rgba(255,94,98,0.05); padding: 0.8rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,94,98,0.15); display: inline-block; word-break: break-all;">
+                ${fallbackSummaryText}
+            </div>
+        `;
+
         Swal.fire({
             title: currentLang === 'ko' ? '알림' : (currentLang === 'ja' ? '通知' : (currentLang === 'zh_tw' ? '提示' : (currentLang === 'zh_cn' ? '提示' : 'Notice'))),
-            text: dict.modal_error || "Sending via Telegram bot failed. Redirecting to direct support chat...",
+            html: fallbackHtml,
             icon: 'warning',
             background: isDark ? '#0c0f1d' : '#ffffff',
             color: isDark ? '#f3f4f6' : '#0f172a',
             confirmButtonColor: '#9b51e0',
             confirmButtonText: errorBtnLabel,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
             customClass: {
                 popup: 'betom-swal2-popup'
             }
