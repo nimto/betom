@@ -245,7 +245,8 @@ document.addEventListener('DOMContentLoaded', () => {
             name: serverName,
             nameEn: serverNameEn,
             price: `${serverPriceAmount}${serverPricePeriod}`,
-            specs: []
+            specs: [],
+            inquiryType: card.getAttribute('id') === 'card-hardware-upgrade' ? '#업그레이드' : '#서버신청'
         };
 
         // Collect Specs
@@ -317,7 +318,8 @@ document.addEventListener('DOMContentLoaded', () => {
             price: currentLang === 'ko' ? '맞춤 솔루션 상담' : (currentLang === 'ja' ? '個別相談' : 'Custom Consulting'),
             specs: [],
             isServiceMode: true,
-            serviceDescEn: descEn
+            serviceDescEn: descEn,
+            inquiryType: cardId.startsWith('card-feature-') ? '#매니지드' : '#도메인'
         };
 
         // Render Beginner Guide Text instead of Spec Badges
@@ -400,6 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             // Mock a custom hardware upgrade request card object
             const dummyCard = document.createElement('div');
+            dummyCard.setAttribute('id', 'card-hardware-upgrade');
             dummyCard.innerHTML = `
                 <div class="server-name">HP DL360 Hardware Upgrade Option</div>
                 <div class="price-amount">Custom Estimate</div>
@@ -469,6 +472,19 @@ ${selectedUpgrades.length > 0 ? selectedUpgrades.join(', ') : '선택 없음'}
 💬 추가 요청 사항:
 ${message ? message : '없음'}`;
         }
+
+        // Clean and build search-friendly hashtags for easy filtering
+        const cleanHashtag = (str) => {
+            if (!str) return '';
+            return '#' + str.replace(/[^a-zA-Z0-9\s가-힣]/g, '').trim().replace(/\s+/g, '_');
+        };
+
+        const typeTag = currentSelectedServer.inquiryType || '#기타문의';
+        const serverTag = cleanHashtag(currentSelectedServer.nameEn);
+        const upgradeTags = selectedUpgrades.map(item => cleanHashtag(item)).join(' ');
+        const finalTags = `${typeTag} ${serverTag} ${upgradeTags}`.trim().replace(/\s+/g, ' ');
+        
+        messageText += `\n\n📌 검색태그:\n${finalTags}`;
 
         const dict = translations[currentLang] || translations['en'];
 
