@@ -4,15 +4,17 @@
     "category": "vm",
     "popular": true,
     "title_i18n": "srv_vm_std_title",
+    "title_default_en": "Standard VM",
     "desc_i18n": "srv_vm_std_desc",
+    "desc_default_en": "Standard cloud VM powered by Ceph distributed storage, delivering high availability and elastic scalability.",
     "price": 150,
     "period_i18n": "srv_vm_std_period",
     "specs": [
-      { "label": "CPU", "val_i18n": "srv_vm_std_cpu" },
-      { "label": "Memory", "val_i18n": "srv_vm_std_ram" },
-      { "label": "Storage", "val_i18n": "srv_vm_std_storage" },
-      { "label": "Operating System", "val_i18n": "srv_vm_std_os" },
-      { "label": "Storage Mirroring", "val_i18n": "srv_vm_std_mirror" }
+      { "label": "CPU", "val_i18n": "srv_vm_std_cpu", "val_default_en": "vCPU (4 Cores)" },
+      { "label": "Memory", "val_i18n": "srv_vm_std_ram", "val_default_en": "8 GB" },
+      { "label": "Storage", "val_i18n": "srv_vm_std_storage", "val_default_en": "250 GB Ceph Cluster" },
+      { "label": "Operating System", "val_i18n": "srv_vm_std_os", "val_default_en": "Linux (Preferred)" },
+      { "label": "Storage Mirroring", "val_i18n": "srv_vm_std_mirror", "val_default_en": "RAID 1 Supported" }
     ],
     "btn_id": "btn-buy-vm"
   },
@@ -21,15 +23,17 @@
     "category": "vm",
     "popular": false,
     "title_i18n": "srv_desktop_title",
+    "title_default_en": "Remote Desktop Node",
     "desc_i18n": "srv_desktop_desc",
+    "desc_default_en": "High-performance remote desktop nodes optimized for GUI testing and Windows application runtimes.",
     "price": 300,
     "period_i18n": "srv_desktop_period",
     "specs": [
-      { "label": "CPU", "val_i18n": "srv_desktop_cpu" },
-      { "label": "Memory", "val_i18n": "srv_desktop_ram" },
-      { "label": "Storage", "val_i18n": "srv_desktop_storage" },
-      { "label": "Operating System", "val_i18n": "srv_desktop_os" },
-      { "label": "Network Uplink", "val_i18n": "srv_desktop_mirror" }
+      { "label": "CPU", "val_i18n": "srv_desktop_cpu", "val_default_en": "Intel 12th Gen i5" },
+      { "label": "Memory", "val_i18n": "srv_desktop_ram", "val_default_en": "8 GB" },
+      { "label": "Storage", "val_i18n": "srv_desktop_storage", "val_default_en": "250 GB (No RAID)" },
+      { "label": "Operating System", "val_i18n": "srv_desktop_os", "val_default_en": "Windows (Preferred)" },
+      { "label": "Network Uplink", "val_i18n": "srv_desktop_mirror", "val_default_en": "1 Gbps Shared Link" }
     ],
     "btn_id": "btn-buy-desktop"
   },
@@ -38,15 +42,17 @@
     "category": "bare",
     "popular": false,
     "title_i18n": "srv_gen6_title",
+    "title_default_en": "HP DL360 Gen6",
     "desc_i18n": "srv_gen6_desc",
+    "desc_default_en": "Cost-efficient hardware dedicated for startups, lightweight testing environments, and auxiliary nodes.",
     "price": 480,
     "period_i18n": "srv_desktop_period",
     "specs": [
-      { "label": "CPU", "val_i18n": "srv_gen6_cpu" },
-      { "label": "Memory", "val_i18n": "srv_gen6_ram" },
-      { "label": "Storage", "val_i18n": "srv_gen6_storage" },
-      { "label": "Operating System", "val_i18n": "srv_common_os" },
-      { "label": "Secured Uplink", "val_i18n": "srv_common_sec" }
+      { "label": "CPU", "val_i18n": "srv_gen6_cpu", "val_default_en": "Dual Intel Xeon X5650" },
+      { "label": "Memory", "val_i18n": "srv_gen6_ram", "val_default_en": "16 GB DDR3" },
+      { "label": "Storage", "val_i18n": "srv_gen6_storage", "val_default_en": "250GB (RAID1) + 500GB (RAID1)" },
+      { "label": "Operating System", "val_i18n": "srv_common_os", "val_default_en": "MS Server / Linux" },
+      { "label": "Secured Uplink", "val_i18n": "srv_common_sec", "val_default_en": "Basic DDoS Shield Included" }
     ],
     "btn_id": "btn-buy-gen6"
   },
@@ -55,15 +61,17 @@
     "category": "bare",
     "popular": false,
     "title_i18n": "srv_gen8_title",
+    "title_default_en": "HP DL360 Gen8",
     "desc_i18n": "srv_gen8_desc",
+    "desc_default_en": "Practical configurations providing high stability for business-critical web servers and DB administration.",
     "price": 550,
     "period_i18n": "srv_desktop_period",
     "specs": [
-      { "label": "CPU", "val_i18n": "srv_gen8_cpu" },
-      { "label": "Memory", "val_i18n": "srv_gen8_ram" },
-      { "label": "Storage", "val_i18n": "srv_gen8_storage" },
-      { "label": "Operating System", "val_i18n": "srv_common_os" },
-      { "label": "Secured Uplink", "val_i18n": "srv_common_sec" }
+      { "label": "CPU", "val_i18n": "srv_gen8_cpu", "val_default_en": "Dual Intel Xeon E5-2690v2" },
+      { "label": "Memory", "val_i18n": "srv_gen8_ram", "val_default_en": "16 GB DDR3" },
+      { "label": "Storage", "val_i18n": "srv_gen8_storage", "val_default_en": "250GB (RAID1) + 500GB (RAID1)" },
+      { "label": "Operating System", "val_i18n": "srv_common_os", "val_default_en": "MS Server / Linux" },
+      { "label": "Secured Uplink", "val_i18n": "srv_common_sec", "val_default_en": "Basic DDoS Shield Included" }
     ],
     "btn_id": "btn-buy-gen8"
   },
@@ -72,15 +80,17 @@
     "category": "bare",
     "popular": true,
     "title_i18n": "srv_gen9_title",
+    "title_default_en": "HP DL360 Gen9",
     "desc_i18n": "srv_gen9_desc",
+    "desc_default_en": "Top choice for high-load applications and high session counts requiring massive database and CPU processing.",
     "price": 630,
     "period_i18n": "srv_desktop_period",
     "specs": [
-      { "label": "CPU", "val_i18n": "srv_gen9_cpu" },
-      { "label": "Memory", "val_i18n": "srv_gen9_ram" },
-      { "label": "Storage", "val_i18n": "srv_gen9_storage" },
-      { "label": "Operating System", "val_i18n": "srv_common_os" },
-      { "label": "Secured Uplink", "val_i18n": "srv_common_sec" }
+      { "label": "CPU", "val_i18n": "srv_gen9_cpu", "val_default_en": "Dual Intel Xeon E5-2690v4" },
+      { "label": "Memory", "val_i18n": "srv_gen9_ram", "val_default_en": "16 GB DDR4" },
+      { "label": "Storage", "val_i18n": "srv_gen9_storage", "val_default_en": "250GB (RAID1) + 500GB (RAID1)" },
+      { "label": "Operating System", "val_i18n": "srv_common_os", "val_default_en": "MS Server / Linux" },
+      { "label": "Secured Uplink", "val_i18n": "srv_common_sec", "val_default_en": "Basic DDoS Shield Included" }
     ],
     "btn_id": "btn-buy-gen9"
   },
@@ -89,15 +99,17 @@
     "category": "bare",
     "popular": false,
     "title_i18n": "srv_gen10_title",
+    "title_default_en": "HP DL360 Gen10",
     "desc_i18n": "srv_gen10_desc",
+    "desc_default_en": "Our flagship bare metal server designed for real-time financial services, heavy compute, and enterprise backbones.",
     "price": 750,
     "period_i18n": "srv_desktop_period",
     "specs": [
-      { "label": "CPU", "val_i18n": "srv_gen10_cpu" },
-      { "label": "Memory", "val_i18n": "srv_gen10_ram" },
-      { "label": "Storage", "val_i18n": "srv_gen10_storage" },
-      { "label": "Operating System", "val_i18n": "srv_common_os" },
-      { "label": "Secured Uplink", "val_i18n": "srv_common_sec" }
+      { "label": "CPU", "val_i18n": "srv_gen10_cpu", "val_default_en": "Dual Intel Xeon Gold 6134" },
+      { "label": "Memory", "val_i18n": "srv_gen10_ram", "val_default_en": "16 GB DDR4 High-Speed" },
+      { "label": "Storage", "val_i18n": "srv_gen10_storage", "val_default_en": "250GB (RAID1) + 500GB (RAID1)" },
+      { "label": "Operating System", "val_i18n": "srv_common_os", "val_default_en": "MS Server / Linux" },
+      { "label": "Secured Uplink", "val_i18n": "srv_common_sec", "val_default_en": "Basic DDoS Shield Included" }
     ],
     "btn_id": "btn-buy-gen10"
   }

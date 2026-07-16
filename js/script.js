@@ -23,6 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const key = el.getAttribute('data-i18n');
             if (dict[key]) {
                 el.innerHTML = dict[key];
+            } else if (translations['en'] && translations['en'][key]) {
+                el.innerHTML = translations['en'][key];
+            } else {
+                const defaultEn = el.getAttribute('data-default-en');
+                if (defaultEn) {
+                    el.innerHTML = defaultEn;
+                }
             }
         });
 
@@ -564,8 +571,8 @@ ${message ? message : '없음'}`;
                 const cardHtml = `
                     <div class="server-card ${popularClass}" data-category="${server.category}" id="${server.id}">
                         ${recommendedBadge}
-                        <div class="server-name" data-i18n="${server.title_i18n}"></div>
-                        <p class="server-desc" data-i18n="${server.desc_i18n}"></p>
+                        <div class="server-name" data-i18n="${server.title_i18n}" data-default-en="${server.title_default_en || ''}"></div>
+                        <p class="server-desc" data-i18n="${server.desc_i18n}" data-default-en="${server.desc_default_en || ''}"></p>
                         <div class="server-price">
                             <span class="price-amount">${server.price}</span>
                             <span class="price-currency"> USDT / mo</span>
@@ -574,7 +581,7 @@ ${message ? message : '없음'}`;
                             ${server.specs.map(spec => `
                                 <div class="spec-item">
                                     <span class="spec-label">${spec.label}</span>
-                                    <span class="spec-val" data-i18n="${spec.val_i18n}"></span>
+                                    <span class="spec-val" data-i18n="${spec.val_i18n}" data-default-en="${spec.val_default_en || ''}"></span>
                                 </div>
                             `).join('')}
                         </div>
