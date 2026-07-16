@@ -745,8 +745,38 @@ const translations = {
         modal_lbl_options: "硬體規格客製化升級選項",
         modal_lbl_msg: "其他特殊需求 / 工作負載描述",
         modal_btn_submit: "送出建置諮詢",
-        modal_success: "建置諮詢已成功發送至 Telegram！我們將儘快與您聯繫。",
-        modal_error: "發送失敗。正在為您轉接至專人聯絡管道..."
+        modal_error: "發送失敗。正在為您轉接至專人聯絡管道...",
+        
+        // Beginner-friendly Details for Managed Services & Domains (Traditional Chinese)
+        guide_proxmox_title: "Proxmox HA Ceph 叢集諮詢窗口",
+        guide_proxmox_desc: "簡單來說，這是一種先進的虛擬化技術。當其中一台伺服器發生故障時，另一台伺服器會瞬間接管業務，讓網站絕不中斷（高可用性 HA），同時將您的寶貴數據同步複製到三個不同的硬碟中，確保數據絕不遺失。",
+        
+        guide_raid_title: "RAID 1 磁碟鏡像諮詢窗口",
+        guide_raid_desc: "這是一種在寫入數據時，同時在兩台硬碟上建立完全相同備份的技術。即使其中一台硬碟損壞，另一台也會立即接管運作，防止系統停機或數據丟失。",
+        
+        guide_lb_title: "負載平衡器管理諮詢窗口",
+        guide_lb_desc: "當網站流量瞬時暴增時，它就像多個服務窗口一樣，負責分流與調度流量。將負載平均分配到多台伺服器，防止單一伺服器因超載而當機。",
+        
+        guide_dr_title: "災難復原 (BCP / DR) 諮詢窗口",
+        guide_dr_desc: "這是針對天災或硬體故障設計的數據緊急逃生裝置。系統會自動將伺服器映像檔備份到遠端的安全外部儲存空間，確保在發生意外時能以最快速度恢復運作。",
+        
+        guide_ids_title: "入侵偵測與防禦 (IDS / IPS) 諮詢窗口",
+        guide_ids_desc: "這是24小時守護伺服器入口的 AI 安全警衛。它能自動識別最新的駭客攻擊與安全漏洞封包特徵，並在攻擊到達伺服器前進行攔截與隔離。",
+        
+        guide_audit_title: "安全性審計與合規諮詢窗口",
+        guide_audit_desc: "這是一項定期檢測系統安全漏洞與風險的健康檢查服務。從模擬入侵測試、系統漏洞修補（OS Patch），到 SSL/TLS 安全憑證的日常更新維護，提供一站式管理。",
+        
+        guide_domreg_title: "網域註冊與安全轉移",
+        guide_domreg_desc: "協助您安全地取得並管理代表企業品牌門面的網路網址（網域）。在完整保護網域所有權的前提下，為您提供無縫轉移至本公司管理的全程支援。",
+        
+        guide_domdns_title: "Anycast DNS 紀錄管理諮詢窗口",
+        guide_domdns_desc: "這是一張智能地圖，能將全球各地的用戶引導至距離距離最近的 DNS 伺服器，在 0.001 秒內完成高速響應，大幅提升海外訪客加載網頁的速度。",
+        
+        guide_domwhois_title: "Whois 隱私保護諮詢窗口",
+        guide_domwhois_desc: "這是一面保護屏障，用於遮蔽網域註冊時必須公開的姓名、聯絡電話及電子郵件等隱私資訊，防止您的個人資料遭受垃圾郵件、騷擾電話及惡意釣魚攻擊。",
+        
+        guide_domlock_title: "網域防劫持與遺失鎖定諮詢窗口",
+        guide_domlock_desc: "這是一道雙重保險箱鎖，在註冊商層級啟用安全鎖定，防止未授權的網域惡意轉移要求或 DNS 伺服器設定被第三方非法篡改。"
     },
     zh_cn: {
         nav_about: "关于我们",
@@ -909,7 +939,37 @@ const translations = {
         modal_lbl_options: "硬件规格定制化升级选项",
         modal_lbl_msg: "其他特殊需求 / 工作负载描述",
         modal_btn_submit: "送出建置咨询",
-        modal_success: "建置咨询已成功发送至 Telegram！我们将尽快与您联系。",
-        modal_error: "发送失败。正在为您转接至专人联络管道..."
+        modal_error: "发送失败。正在为您转接至专人联络管道...",
+        
+        // Beginner-friendly Details for Managed Services & Domains (Simplified Chinese)
+        guide_proxmox_title: "Proxmox HA Ceph 集群咨询窗口",
+        guide_proxmox_desc: "简单来说，这是一种先进的虚拟化技术。当其中一台服务器发生故障时，另一台服务器会瞬间接管业务，确保网站绝不中断（高可用性 HA），同时将您的宝贵数据同步复制到三个不同的硬盘中，确保数据绝不丢失。",
+        
+        guide_raid_title: "RAID 1 磁盘镜像咨询",
+        guide_raid_desc: "这是一种在写入数据时，同时在两台硬盘上建立完全相同备份的技术。即使其中一台硬盘损坏，另一台也会立即接管运作，防止系统停机或数据丢失。",
+        
+        guide_lb_title: "负载均衡器管理咨询",
+        guide_lb_desc: "当网站流量瞬时暴增时，它就像多个服务窗口一样，负责分流与调度流量。将负载平均分配到多台服务器，防止单台服务器因超载而宕机。",
+        
+        guide_dr_title: "灾难恢复 (BCP / DR) 咨询",
+        guide_dr_desc: "这是针对天灾或硬件故障设计的数据紧急逃生装置。系统会自动将服务器映像文件备份到远端的安全外部存储空间，确保在发生意外时能以最快速度恢复运作。",
+        
+        guide_ids_title: "入侵检测与防御 (IDS / IPS) 咨询",
+        guide_ids_desc: "这是24小时守护服务器入口的 AI 安全警卫。它能自动识别最新的黑客攻击与安全漏洞数据包特征，并在攻击到达服务器前进行拦截与隔离。",
+        
+        guide_audit_title: "安全性审计与合规咨询",
+        guide_audit_desc: "这是一项定期检测系统安全漏洞与风险的健康检查服务。从模拟入侵测试、系统漏洞修补（OS Patch），到 SSL/TLS 安全证书的日常更新维护，提供一站式管理。",
+        
+        guide_domreg_title: "域名注册与安全转移",
+        guide_domreg_desc: "协助您安全地取得并管理代表企业品牌门面的网络网址（域名）。在完整保护域名所有权的前提下，为您提供无缝转移至本公司管理的全程支持。",
+        
+        guide_domdns_title: "Anycast DNS 记录管理咨询",
+        guide_domdns_desc: "这是一张智能地图，能将全球各地用户引导至距离最近的 DNS 服务器，在 0.001 秒内完成高速响应，大幅提升海外访客加载网页的速度。",
+        
+        guide_domwhois_title: "Whois 隐私保护咨询",
+        guide_domwhois_desc: "这是一面保护屏障，用于遮蔽域名注册时必须公开的姓名、联系电话及电子邮件等隐私信息，防止您的个人资料遭受垃圾邮件、骚扰电话及恶意钓鱼攻击。",
+        
+        guide_domlock_title: "域名防劫持与丢失锁定咨询",
+        guide_domlock_desc: "这是一道双重保险箱锁，在注册商层级启用安全锁定，防止未授权的域名恶意转移要求或 DNS 服务器设置被第三方非法篡改。"
     },
 };
